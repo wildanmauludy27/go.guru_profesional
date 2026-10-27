@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10243a">
+<meta name="description" content="Website simulasi latihan UKPPPG Guru Tertentu 2026 bidang Informatika, 65 soal SJT dan PCK dengan timer, penilaian otomatis, dan pembahasan.">
+<title>Simulasi UKPPPG Informatika 2026</title>
+<style>
+:root{--navy:#10243a;--navy2:#173650;--teal:#10a99a;--teal-dark:#087f77;--bg:#f3f6fa;--card:#fff;--text:#182536;--muted:#65758a;--line:#dce4ec;--green:#13835b;--green-bg:#e8f7ef;--red:#c43f4b;--red-bg:#fff0f0;--amber:#a66b00;--amber-bg:#fff5db;--shadow:0 12px 32px rgba(16,36,58,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #75d8cf;outline-offset:2px}
+.topbar{background:var(--navy);color:white;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.2px}
+.brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--teal);font-weight:900;color:#062d35}
+.brand small{display:block;font-size:11px;letter-spacing:1.1px;color:#c8d7e5;font-weight:700}
+.top-tag{font-size:12px;color:#d5e2ee;border:1px solid #476078;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.container{width:min(1180px,calc(100% - 32px));margin:30px auto 56px}
+.screen{display:none}.screen.active{display:block}
+.hero{background:linear-gradient(130deg,#10243a 0%,#183f58 68%,#087f77 140%);border-radius:26px;color:white;padding:clamp(26px,5vw,54px);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-75px;top:-95px;box-shadow:0 0 0 32px rgba(255,255,255,.025),0 0 0 65px rgba(255,255,255,.025)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(16,169,154,.17);border:1px solid rgba(117,216,207,.4);color:#baf7ef;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+.hero h1{font-size:clamp(30px,5vw,49px);line-height:1.12;max-width:720px;margin:20px 0 14px;letter-spacing:-1.2px}
+.hero p{color:#d6e3ee;max-width:700px;margin:0;font-size:16px}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.stat-pill{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);border-radius:14px;padding:10px 14px;min-width:112px}
+.stat-pill strong{display:block;font-size:22px;line-height:1.2}.stat-pill span{font-size:12px;color:#d6e3ee}
+.home-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:20px;margin-top:20px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow)}
+.panel h2{font-size:19px;margin:0 0 6px}.panel .sub{color:var(--muted);font-size:14px;margin:0 0 20px}
+.form-label{display:block;font-size:13px;font-weight:750;margin:15px 0 7px}
+.field{width:100%;border:1px solid #cdd8e3;border-radius:12px;background:white;padding:12px 13px;color:var(--text)}
+.field:focus{border-color:var(--teal)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.primary-btn,.secondary-btn,.ghost-btn,.danger-btn{border:0;border-radius:12px;padding:12px 17px;font-weight:800;transition:transform .12s,background .12s}
+.primary-btn{background:var(--teal);color:#052d32}.primary-btn:hover{background:#36c4b6;transform:translateY(-1px)}
+.secondary-btn{background:var(--navy);color:white}.secondary-btn:hover{background:var(--navy2)}
+.ghost-btn{background:#eef3f7;color:var(--navy);border:1px solid var(--line)}.ghost-btn:hover{background:#e2eaf1}
+.danger-btn{background:#fff0f0;color:var(--red);border:1px solid #f1c6ca}
+.full-btn{width:100%;margin-top:19px}
+.note{background:#fff8e7;border:1px solid #f1dfad;border-radius:13px;padding:12px 14px;color:#785416;font-size:13px;margin-top:15px}
+.feature-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:14px}
+.feature-list li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:#3b4a5b}
+.check-icon{flex:none;display:grid;place-items:center;width:24px;height:24px;background:var(--green-bg);color:var(--green);border-radius:8px;font-size:13px;font-weight:900}
+.section-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.section-mini{padding:14px;border-radius:13px;background:#f5f8fb;border:1px solid var(--line)}
+.section-mini strong{display:block;font-size:18px}.section-mini span{font-size:12px;color:var(--muted)}
+.footnote{font-size:12px;color:var(--muted);text-align:center;margin-top:22px}
+.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:20px;align-items:start}
+.exam-main{min-width:0}
+.exam-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.exam-heading{font-size:20px;font-weight:850}.exam-user{font-size:13px;color:var(--muted)}
+.timer-box{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:8px 13px}
+.timer-label{font-size:11px;color:var(--muted);display:block}.timer-value{font-size:19px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--navy)}
+.timer-box.warning{border-color:#edb4b8;background:#fff4f4}.timer-box.warning .timer-value{color:var(--red)}
+.progress-wrap{background:#e0e8ef;height:7px;border-radius:99px;overflow:hidden;margin-bottom:17px}.progress-fill{height:100%;width:0;background:var(--teal);transition:width .2s}
+.question-card{background:white;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3.2vw,32px);box-shadow:var(--shadow)}
+.question-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:17px}
+.q-number{font-size:12px;font-weight:850;background:var(--navy);color:white;border-radius:8px;padding:6px 9px}
+.section-badge{font-size:11px;font-weight:850;letter-spacing:.6px;text-transform:uppercase;background:#e6f8f5;color:#08776f;border-radius:8px;padding:6px 9px}
+.q-position{font-size:12px;color:var(--muted);margin-left:auto}
+.question-text{font-size:clamp(17px,2vw,20px);font-weight:720;line-height:1.6;margin:0 0 22px}
+.question-text pre{white-space:pre-wrap;background:#10243a;color:#e5f5ff;padding:16px;border-radius:12px;overflow:auto;font-size:14px;font-weight:500}
+.question-text code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+.options{display:grid;gap:11px}
+.option{display:flex;align-items:flex-start;gap:13px;width:100%;text-align:left;padding:14px 15px;border:1px solid #dbe3eb;border-radius:13px;background:#fff;color:var(--text);line-height:1.5}
+.option:hover{border-color:#86cfc7;background:#f8fdfc}
+.option.selected{border:2px solid var(--teal-dark);padding:13px 14px;background:#eaf9f6}
+.option-letter{display:grid;place-items:center;flex:none;width:29px;height:29px;border-radius:9px;background:#edf2f6;color:#4d5d70;font-size:13px;font-weight:900}
+.option.selected .option-letter{background:var(--teal-dark);color:white}
+.option-text{padding-top:2px;min-width:0}.option-text code{background:#eef3f7;padding:2px 4px;border-radius:4px;font-size:.9em}
+.question-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:23px}
+.action-left,.action-right{display:flex;gap:9px;flex-wrap:wrap}
+.bookmark-btn.marked{background:var(--amber-bg);color:var(--amber);border-color:#efd58d}
+.exam-side{position:sticky;top:14px;display:grid;gap:15px}
+.side-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.side-panel h3{font-size:14px;margin:0 0 13px}
+.legend{display:flex;gap:11px;flex-wrap:wrap;margin-bottom:13px;font-size:11px;color:var(--muted)}
+.legend-item{display:flex;align-items:center;gap:5px}.legend-dot{width:10px;height:10px;border-radius:3px;background:#e8edf2;border:1px solid #cfd9e3}.legend-dot.done{background:#d4f2e6;border-color:#6fc6a2}.legend-dot.flag{background:#fff0c7;border-color:#e7c36b}
+.navigator{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.nav-q{aspect-ratio:1;border:1px solid #d7e0e9;border-radius:9px;background:#f7f9fb;color:#516173;font-size:12px;font-weight:800;padding:0}
+.nav-q:hover{border-color:var(--teal-dark)}.nav-q.done{background:#dff5eb;border-color:#9bd9bf;color:#126d4b}.nav-q.flag{box-shadow:inset 0 -3px #e4b849}.nav-q.current{outline:2px solid var(--navy);outline-offset:1px;background:#e7edf4;color:var(--navy)}
+.answer-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.mini-stat{background:#f5f8fb;border-radius:10px;padding:10px}.mini-stat strong{font-size:18px;display:block}.mini-stat span{font-size:11px;color:var(--muted)}
+.side-submit{width:100%;margin-top:15px}
+.small-muted{font-size:12px;color:var(--muted)}
+.result-hero{background:linear-gradient(130deg,#10243a,#1a4b61);color:white;border-radius:22px;padding:clamp(24px,4vw,40px);box-shadow:var(--shadow)}
+.result-hero h1{margin:10px 0;font-size:clamp(27px,4vw,38px)}
+.result-hero p{color:#d3e2ed;margin:0}
+.score-big{font-size:clamp(48px,8vw,72px);font-weight:950;letter-spacing:-2px;line-height:1.1;margin:20px 0 8px}
+.result-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.result-stat{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px}
+.result-stat strong{display:block;font-size:23px}.result-stat span{font-size:12px;color:#d4e2ec}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.score-panel{background:white;border:1px solid var(--line);border-radius:17px;padding:20px}
+.score-panel h3{margin:0 0 12px;font-size:16px}
+.score-line{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin:10px 0 6px}.score-track{height:8px;border-radius:99px;background:#e7edf2;overflow:hidden}.score-track span{display:block;height:100%;background:var(--teal);border-radius:99px}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.review-wrap{margin-top:22px}.review-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.filter-btn{border:1px solid var(--line);border-radius:999px;background:white;padding:8px 13px;font-size:12px;font-weight:800;color:var(--muted)}
+.filter-btn.active{background:var(--navy);border-color:var(--navy);color:white}
+.review-card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;margin:12px 0}
+.review-card h3{font-size:16px;line-height:1.55;margin:12px 0 15px}
+.review-option{padding:9px 11px;border-radius:9px;border:1px solid transparent;margin:7px 0;font-size:14px}
+.review-option.correct{background:var(--green-bg);border-color:#b4e3cb;color:#155f42}
+.review-option.chosen-wrong{background:var(--red-bg);border-color:#f0c0c4;color:#8f2932}
+.review-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;margin-left:6px}
+.explanation{margin-top:13px;background:#f4f8fb;border-left:3px solid var(--teal);padding:12px 14px;border-radius:0 9px 9px 0;font-size:13px;color:#415165}
+.empty-review{padding:28px;text-align:center;background:#fff;border:1px dashed #cbd7e2;border-radius:14px;color:var(--muted)}
+.modal-backdrop{position:fixed;inset:0;background:rgba(9,22,35,.62);display:none;place-items:center;padding:18px;z-index:20}
+.modal-backdrop.show{display:grid}.modal{width:min(460px,100%);background:white;border-radius:20px;padding:25px;box-shadow:0 25px 80px rgba(0,0,0,.25)}
+.modal h2{margin:0 0 8px}.modal p{color:var(--muted);font-size:14px}.modal-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:20px}
+footer{padding:22px;text-align:center;color:var(--muted);font-size:12px}
+.hidden{display:none!important}
+@media(max-width:900px){.home-grid{grid-template-columns:1fr}.exam-layout{grid-template-columns:minmax(0,1fr)}.exam-side{position:static;grid-row:1}.navigator{grid-template-columns:repeat(13,1fr)}.side-panel.navigator-panel{order:2}.exam-main{grid-row:2}.exam-side{display:contents}.exam-side .side-panel:first-child{grid-row:1}.exam-side .navigator-panel{grid-row:3}.result-stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.topbar{padding:12px 14px}.top-tag{display:none}.container{width:calc(100% - 20px);margin:15px auto 35px}.hero{border-radius:19px;padding:25px 20px}.hero h1{font-size:32px}.panel{padding:19px}.form-row{grid-template-columns:1fr}.question-card{padding:18px 14px}.option{padding:12px 11px;gap:9px}.option.selected{padding:11px 10px}.option-letter{width:27px;height:27px}.navigator{grid-template-columns:repeat(9,1fr)}.result-grid{grid-template-columns:1fr}.result-stats{gap:8px}.result-stat{padding:11px}.result-stat strong{font-size:20px}.question-actions .primary-btn,.question-actions .secondary-btn,.question-actions .ghost-btn{padding:10px 12px}.q-position{margin-left:0}}
+@media print{body{background:white}.topbar,footer,.result-actions,.filter-row,.question-actions,.exam-side{display:none!important}.container{width:100%;margin:0}.screen{display:none!important}#screenResult.active{display:block!important}.result-hero{background:white;color:#111;border:1px solid #bbb;box-shadow:none}.result-hero p{color:#333}.result-stat{color:#111;border-color:#bbb;background:white}.result-stat span{color:#333}.review-card,.score-panel{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">IF</div><div>SIMULASI UKPPPG<small>GURU TERTENTU 2026</small></div></div>
+  <div class="top-tag">Bidang Studi Informatika</div>
+</header>
+
+<main class="container">
+  <section id="screenHome" class="screen active">
+    <div class="hero">
+      <span class="eyebrow">● Paket latihan mandiri</span>
+      <h1>Simulasi Ujian Informatika</h1>
+      <p>Latihan 65 soal SJT dan PCK dengan pengalaman ujian berbasis web, timer, penilaian otomatis, dan pembahasan jawaban.</p>
+      <div class="stat-row">
+        <div class="stat-pill"><strong>65</strong><span>Total soal</span></div>
+        <div class="stat-pill"><strong>30</strong><span>Soal SJT</span></div>
+        <div class="stat-pill"><strong>35</strong><span>Soal PCK</span></div>
+        <div class="stat-pill"><strong>4</strong><span>Pilihan jawaban</span></div>
+      </div>
+    </div>
+    <div class="home-grid">
+      <div class="panel">
+        <h2>Mulai simulasi</h2>
+        <p class="sub">Isi nama bila ingin dicantumkan pada ringkasan hasil, lalu pilih waktu latihan.</p>
+        <label class="form-label" for="participantName">Nama peserta (opsional)</label>
+        <input id="participantName" class="field" type="text" maxlength="80" placeholder="Contoh: Budi Santoso" autocomplete="name">
+        <div class="section-split">
+          <div class="section-mini"><strong>120 menit</strong><span>Waktu pengerjaan</span></div>
+          <div class="section-mini"><strong>65 soal</strong><span>30 SJT + 35 PCK</span></div>
+        </div>
+        <button id="startBtn" class="primary-btn full-btn">Mulai ujian <span aria-hidden="true">→</span></button>
+        <div class="note"><strong>Catatan:</strong> durasi di atas merupakan pengaturan latihan, bukan pernyataan mengenai durasi resmi UKPPPG. Paket ini adalah simulasi orisinal, bukan soal resmi atau bocoran ujian.</div>
+      </div>
+      <div class="panel">
+        <h2>Fitur simulasi</h2>
+        <p class="sub">Dirancang untuk latihan mandiri di laptop maupun HP.</p>
+        <ul class="feature-list">
+          <li><span class="check-icon">✓</span><span><strong>Navigasi 65 soal</strong><br>Berpindah soal dan melihat status jawaban dengan cepat.</span></li>
+          <li><span class="check-icon">✓</span><span><strong>Tandai untuk ditinjau</strong><br>Tandai soal yang ingin diperiksa kembali sebelum mengumpulkan.</span></li>
+          <li><span class="check-icon">✓</span><span><strong>Penilaian otomatis</strong><br>Lihat skor total, skor SJT, skor PCK, dan jumlah jawaban benar.</span></li>
+          <li><span class="check-icon">✓</span><span><strong>Pembahasan dan ekspor</strong><br>Tinjau jawaban serta unduh hasil latihan dalam format CSV.</span></li>
+        </ul>
+        <div class="section-split">
+          <div class="section-mini"><strong>01–30</strong><span>Situational Judgement Test</span></div>
+          <div class="section-mini"><strong>31–65</strong><span>Pedagogical Content Knowledge</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="footnote">Hasil hanya diproses di browser perangkat ini. Website ini tidak mengirimkan nama atau jawaban ke server.</p>
+  </section>
+
+  <section id="screenExam" class="screen">
+    <div class="exam-head">
+      <div><div class="exam-heading">Lembar ujian</div><div id="examUser" class="exam-user">Peserta: Peserta</div></div>
+      <div id="timerBox" class="timer-box"><div><span class="timer-label">Sisa waktu</span><span id="timerValue" class="timer-value">90:00</span></div></div>
+    </div>
+    <div class="progress-wrap"><div id="progressFill" class="progress-fill"></div></div>
+    <div class="exam-layout">
+      <div class="exam-main">
+        <article class="question-card">
+          <div id="questionArea"></div>
+          <div class="question-actions">
+            <div class="action-left">
+              <button id="prevBtn" class="ghost-btn">← Sebelumnya</button>
+              <button id="flagBtn" class="ghost-btn bookmark-btn">☆ Tandai</button>
+            </div>
+            <div class="action-right">
+              <button id="nextBtn" class="secondary-btn">Berikutnya →</button>
+            </div>
+          </div>
+        </article>
+      </div>
+      <aside class="exam-side">
+        <div class="side-panel">
+          <h3>Ringkasan pengerjaan</h3>
+          <div class="legend">
+            <span class="legend-item"><span class="legend-dot done"></span> Terjawab</span>
+            <span class="legend-item"><span class="legend-dot flag"></span> Ditandai</span>
+          </div>
+          <div class="answer-stats">
+            <div class="mini-stat"><strong id="answeredCount">0</strong><span>Terjawab</span></div>
+            <div class="mini-stat"><strong id="unansweredCount">65</strong><span>Belum dijawab</span></div>
+          </div>
+        </div>
+        <div class="side-panel navigator-panel">
+          <h3>Navigasi soal</h3>
+          <div id="navigator" class="navigator"></div>
+          <button id="submitBtn" class="primary-btn side-submit">Selesaikan ujian</button>
+          <p class="small-muted">Periksa soal yang ditandai dan jawaban kosong sebelum mengumpulkan.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="screenResult" class="screen">
+    <div id="resultHero" class="result-hero"></div>
+    <div class="result-grid">
+      <div class="score-panel">
+        <h3>Rincian skor per bagian</h3>
+        <div class="score-line"><span>SJT</span><strong id="sjText">0/30</strong></div>
+        <div class="score-track"><span id="sjBar" style="width:0%"></span></div>
+        <div class="score-line" style="margin-top:18px"><span>PCK</span><strong id="pckText">0/35</strong></div>
+        <div class="score-track"><span id="pckBar" style="width:0%"></span></div>
+      </div>
+      <div class="score-panel">
+        <h3>Langkah berikutnya</h3>
+        <p class="small-muted">Gunakan hasil ini untuk menentukan materi yang perlu dipelajari kembali. Skor simulasi bukan nilai kelulusan resmi.</p>
+        <div class="result-actions">
+          <button id="reviewBtn" class="primary-btn">Lihat pembahasan</button>
+          <button id="csvBtn" class="ghost-btn">Unduh hasil CSV</button>
+          <button id="printBtn" class="ghost-btn">Cetak hasil</button>
+          <button id="restartBtn" class="secondary-btn">Mulai ulang</button>
+        </div>
+      </div>
+    </div>
+    <div id="reviewWrap" class="review-wrap hidden">
+      <div class="review-head"><div><h2 style="margin:0">Pembahasan soal</h2><p class="small-muted" style="margin:4px 0 0">Jawaban benar ditandai hijau. Jawaban salah yang Anda pilih ditandai merah.</p></div></div>
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">Semua soal</button>
+        <button class="filter-btn" data-filter="wrong">Jawaban salah</button>
+        <button class="filter-btn" data-filter="unanswered">Belum dijawab</button>
+      </div>
+      <div id="reviewList"></div>
+    </div>
+  </section>
+</main>
+
+<div id="confirmModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+  <div class="modal">
+    <h2 id="confirmTitle">Kumpulkan ujian?</h2>
+    <p id="confirmMessage">Pastikan Anda sudah memeriksa jawaban.</p>
+    <div class="modal-actions">
+      <button id="cancelSubmitBtn" class="ghost-btn">Kembali</button>
+      <button id="confirmSubmitBtn" class="primary-btn">Ya, kumpulkan</button>
+    </div>
+  </div>
+</div>
+
+<footer>Simulasi latihan mandiri UKPPPG Guru Tertentu 2026 • Bidang Studi Informatika</footer>
+
+<script>
+const questions = [{"section": "SJT", "q": "Seorang guru Informatika telah merencanakan pembelajaran algoritma menggunakan aplikasi pemrograman daring. Ketika pembelajaran dimulai, jaringan internet sekolah mengalami gangguan. Sebagian peserta didik tidak dapat membuka aplikasi, sedangkan tujuan pembelajaran hari itu adalah memahami urutan instruksi dan logika algoritma. Tindakan yang paling tepat dilakukan guru adalah ....", "options": ["Tetap menjelaskan materi melalui ceramah sampai jaringan kembali normal.", "Menghentikan pembelajaran dan meminta peserta didik mempelajari materi sendiri di rumah.", "Mengalihkan kegiatan menjadi simulasi algoritma tanpa komputer menggunakan kartu instruksi atau diagram alir, kemudian memberikan asesmen yang sesuai.", "Meminta peserta didik yang memiliki kuota internet untuk mengerjakan tugas, sedangkan peserta didik lainnya menunggu."], "answer": 2, "explanation": "Tujuan pembelajaran tetap dapat dicapai melalui aktivitas tanpa komputer ketika internet tidak tersedia."}, {"section": "SJT", "q": "Seorang peserta didik mengirimkan foto temannya yang memalukan ke grup kelas. Foto tersebut kemudian disebarkan oleh beberapa peserta didik lain. Korban terlihat tertekan dan tidak ingin mengikuti pelajaran Informatika. Apa tindakan guru yang paling tepat?", "options": ["Menegur seluruh kelas melalui grup dengan menyebut nama peserta didik yang terlibat.", "Melindungi korban, menghentikan penyebaran, mendokumentasikan kejadian seperlunya, dan menindaklanjuti sesuai prosedur perlindungan peserta didik di sekolah.", "Meminta korban mengabaikan kejadian tersebut karena terjadi di luar kegiatan pembelajaran.", "Menghukum seluruh peserta didik dengan memberikan tugas tambahan yang sama."], "answer": 1, "explanation": "Keselamatan dan perlindungan korban harus diutamakan, disertai penanganan sesuai prosedur sekolah."}, {"section": "SJT", "q": "Dalam satu kelas, beberapa peserta didik sudah mampu membuat program sederhana, sedangkan peserta didik lainnya masih kesulitan memahami variabel dan percabangan. Guru ingin semua peserta didik mencapai tujuan pembelajaran yang sama tanpa mengabaikan perbedaan kemampuan awal. Strategi yang paling tepat adalah ....", "options": ["Memberikan tugas yang sama dengan tingkat kesulitan tertinggi kepada seluruh peserta didik.", "Memisahkan peserta didik berdasarkan kemampuan dan tidak mengubah kelompok selama satu semester.", "Meminta peserta didik yang belum memahami materi untuk belajar sendiri tanpa pendampingan.", "Melakukan asesmen diagnostik, menyediakan contoh dan bantuan bertahap bagi yang membutuhkan, serta memberikan tantangan lanjutan bagi peserta didik yang sudah siap."], "answer": 3, "explanation": "Asesmen diagnostik dan bantuan bertahap memungkinkan pembelajaran sesuai kebutuhan tanpa menghilangkan tujuan bersama."}, {"section": "SJT", "q": "Saat membahas algoritma, seorang peserta didik memberikan jawaban yang salah. Peserta didik tersebut sebenarnya sudah mencoba menjelaskan alur berpikirnya, tetapi beberapa temannya mulai menertawakannya. Apa respons guru yang paling tepat?", "options": ["Mengapresiasi usaha peserta didik, menggali alasan di balik jawabannya, lalu membimbing kelas menemukan letak kesalahan konsep.", "Langsung memberikan jawaban yang benar agar pembelajaran tidak membuang waktu.", "Meminta peserta didik yang salah menjelaskan kembali jawabannya di depan kelas sampai benar.", "Mengabaikan jawaban tersebut dan beralih kepada peserta didik yang lebih mampu."], "answer": 0, "explanation": "Kesalahan menjadi sumber belajar jika guru menggali pemikiran peserta didik dan menjaga lingkungan yang aman."}, {"section": "SJT", "q": "Guru menerima dua tugas pemrograman yang memiliki struktur kode dan kesalahan yang hampir sama. Guru menduga salah satu peserta didik menyalin pekerjaan temannya, tetapi belum memiliki bukti yang cukup. Tindakan yang paling profesional adalah ....", "options": ["Mengumumkan dugaan tersebut di depan kelas agar peserta didik lain tidak meniru.", "Langsung memberikan nilai nol kepada kedua peserta didik.", "Memeriksa bukti yang tersedia, berbicara secara pribadi dengan peserta didik, meminta mereka menjelaskan proses pengerjaan, dan menindaklanjuti berdasarkan aturan akademik sekolah.", "Mengabaikan persoalan tersebut karena program yang dikumpulkan dapat dijalankan."], "answer": 2, "explanation": "Dugaan pelanggaran perlu diperiksa berdasarkan bukti, klarifikasi, dan aturan akademik, bukan prasangka."}, {"section": "SJT", "q": "Seorang orang tua menghubungi guru karena nilai proyek aplikasi anaknya lebih rendah daripada yang diharapkan. Orang tua merasa anaknya sudah bekerja keras dan meminta nilai dinaikkan. Apa yang sebaiknya dilakukan guru?", "options": ["Menaikkan nilai untuk menjaga hubungan baik dengan orang tua.", "Menjelaskan kriteria dan bukti penilaian secara objektif, mendengarkan keberatan orang tua, serta memeriksa kembali penilaian apabila terdapat alasan yang dapat dipertanggungjawabkan.", "Menolak berdiskusi karena nilai sepenuhnya merupakan kewenangan guru.", "Membandingkan nilai anak tersebut dengan nilai teman-temannya untuk menunjukkan bahwa penilaian sudah benar."], "answer": 1, "explanation": "Penilaian harus transparan, berbasis kriteria, terbuka terhadap klarifikasi, dan dapat ditinjau bila diperlukan."}, {"section": "SJT", "q": "Seorang peserta didik mengumpulkan laporan proyek Informatika dengan bahasa yang sangat berbeda dari biasanya. Guru menduga laporan tersebut dibuat menggunakan kecerdasan artifisial (AI), tetapi belum mengetahui proses pengerjaannya. Tindakan yang paling tepat adalah ....", "options": ["Meminta peserta didik menjelaskan isi dan proses penyusunan laporan, memeriksa bukti proses pengerjaan, serta menerapkan kebijakan penggunaan AI yang telah dijelaskan sebelumnya.", "Langsung memberikan nilai nol berdasarkan dugaan guru.", "Menyatakan bahwa semua penggunaan AI dalam pembelajaran pasti merupakan pelanggaran.", "Menggunakan hasil detektor AI sebagai satu-satunya dasar untuk menetapkan pelanggaran."], "answer": 0, "explanation": "Dugaan penggunaan AI tidak cukup untuk menetapkan pelanggaran. Proses pengerjaan dan kebijakan yang jelas perlu diperiksa."}, {"section": "SJT", "q": "Seorang peserta didik memiliki hambatan penglihatan sehingga kesulitan membaca kode program dengan ukuran huruf kecil. Guru ingin peserta didik tersebut tetap dapat mencapai tujuan pembelajaran yang sama. Langkah yang paling tepat adalah ....", "options": ["Membebaskan peserta didik dari seluruh kegiatan pemrograman.", "Meminta teman sebangku mengerjakan program atas nama peserta didik tersebut.", "Menyediakan materi yang dapat diakses, misalnya pembesaran huruf atau pembaca layar jika sesuai, serta mendiskusikan kebutuhan dan dukungan yang diperlukan bersama peserta didik.", "Tetap menggunakan materi yang sama tanpa penyesuaian agar semua peserta didik diperlakukan identik."], "answer": 2, "explanation": "Aksesibilitas dan akomodasi yang sesuai membantu peserta didik mencapai kompetensi yang ditargetkan."}, {"section": "SJT", "q": "Dalam pembelajaran keamanan digital, hanya beberapa peserta didik yang aktif menjawab pertanyaan. Sebagian besar lainnya diam, meskipun hasil pekerjaan tertulis menunjukkan bahwa mereka memahami sebagian materi. Strategi yang paling tepat adalah ....", "options": ["Memanggil peserta didik yang diam secara bergantian untuk menjawab pertanyaan sulit.", "Menambah jumlah tugas tertulis agar peserta didik lebih aktif.", "Menyimpulkan bahwa peserta didik yang diam belum mempelajari materi.", "Memberikan waktu berpikir individu, dilanjutkan diskusi berpasangan, kemudian menyediakan kesempatan berbagi jawaban secara lisan atau tertulis."], "answer": 3, "explanation": "Diskusi berpasangan dan beragam cara merespons dapat meningkatkan partisipasi tanpa mempermalukan peserta didik."}, {"section": "SJT", "q": "Setelah mengajarkan struktur percabangan, guru memberikan kuis. Sebagian besar peserta didik memperoleh nilai rendah. Guru menyadari bahwa beberapa soal meminta peserta didik menelusuri alur program yang lebih kompleks daripada contoh latihan sebelumnya. Apa tindakan yang paling tepat?", "options": ["Mengulang tes yang sama sampai nilai peserta didik meningkat.", "Menganalisis jawaban dan kesalahan peserta didik, mengidentifikasi miskonsepsi, lalu memperbaiki pembelajaran dan memberikan asesmen lanjutan.", "Mengurangi nilai ketuntasan agar sebagian besar peserta didik dinyatakan berhasil.", "Menyimpulkan bahwa materi percabangan terlalu sulit untuk diajarkan."], "answer": 1, "explanation": "Analisis hasil asesmen membantu menemukan miskonsepsi dan menentukan tindak lanjut pembelajaran."}, {"section": "SJT", "q": "Guru ingin mengajarkan pengolahan data menggunakan perangkat lunak yang hanya tersedia melalui lisensi berbayar. Sekolah belum memiliki lisensi dan belum mengalokasikan anggaran untuk membelinya. Keputusan yang paling tepat adalah ....", "options": ["Memilih perangkat lunak legal yang tersedia, seperti aplikasi sumber terbuka yang sesuai dengan tujuan pembelajaran.", "Menggunakan perangkat lunak bajakan karena hanya dipakai untuk pendidikan.", "Meminta peserta didik mencari salinan perangkat lunak tidak resmi di internet.", "Menghapus seluruh materi pengolahan data dari pembelajaran."], "answer": 0, "explanation": "Penggunaan perangkat lunak harus memperhatikan lisensi dan ketersediaan alternatif legal."}, {"section": "SJT", "q": "Guru ingin menggunakan layanan AI publik untuk menganalisis kesulitan belajar peserta didik. Guru berencana mengunggah nama lengkap, nomor induk, nilai, dan catatan perilaku setiap peserta didik. Tindakan yang paling tepat adalah ....", "options": ["Mengunggah semua data karena layanan tersebut dapat membantu guru.", "Mengganti nama dengan inisial, tetapi tetap mengunggah semua identitas dan catatan pribadi tanpa memeriksa kebijakan layanan.", "Mengunggah data nilai saja tanpa mempertimbangkan apakah data tersebut dapat dikaitkan kembali dengan identitas peserta didik.", "Tidak mengunggah data pribadi yang dapat mengidentifikasi peserta didik ke layanan yang belum disetujui; gunakan data minimum yang telah dianonimkan dan layanan yang sesuai dengan kebijakan perlindungan data."], "answer": 3, "explanation": "Data pribadi harus dilindungi. Penggunaan AI perlu mempertimbangkan persetujuan, kebijakan, keamanan, dan minimisasi data."}, {"section": "SJT", "q": "Dalam proyek pembuatan aplikasi sederhana, satu peserta didik mengerjakan hampir seluruh kode, sedangkan anggota lainnya hanya menuliskan nama dalam laporan. Apa yang sebaiknya dilakukan guru?", "options": ["Memberikan nilai kelompok yang sama tanpa memeriksa kontribusi masing-masing anggota.", "Menetapkan peran yang jelas, memantau kemajuan setiap anggota, memberikan kesempatan kolaborasi, dan menilai kontribusi individu sesuai kriteria yang transparan.", "Meminta peserta didik yang paling mampu menyelesaikan seluruh proyek agar hasil kelompok lebih baik.", "Membatalkan proyek kelompok dan memberikan nilai nol kepada semua anggota."], "answer": 1, "explanation": "Peran, pemantauan, dan akuntabilitas individu membantu memastikan pembelajaran kolaboratif berjalan adil."}, {"section": "SJT", "q": "Saat asesmen praktik pemrograman berlangsung, listrik sekolah padam. Sebagian peserta didik sudah menyelesaikan tugas, sedangkan sebagian lainnya kehilangan hasil pekerjaan yang belum tersimpan. Apa tindakan guru yang paling tepat?", "options": ["Menetapkan nilai berdasarkan pekerjaan yang berhasil disimpan tanpa mempertimbangkan gangguan teknis.", "Memberikan kesempatan ujian ulang hanya kepada peserta didik yang dianggap paling membutuhkan.", "Mendokumentasikan gangguan, berkoordinasi dengan pihak terkait, memeriksa bukti pekerjaan yang tersedia, dan menetapkan tindak lanjut yang adil bagi peserta didik terdampak.", "Menganggap peserta didik yang belum menyelesaikan tugas tidak menguasai materi."], "answer": 2, "explanation": "Gangguan teknis perlu didokumentasikan dan ditangani melalui prosedur yang menjaga keadilan asesmen."}, {"section": "SJT", "q": "Dalam diskusi guru, seorang rekan menyatakan bahwa semua situs yang menggunakan HTTPS pasti aman dan tidak mungkin melakukan penipuan. Guru Informatika mengetahui bahwa pernyataan tersebut tidak tepat. Apa tindakan yang paling profesional?", "options": ["Menjelaskan secara santun bahwa HTTPS melindungi komunikasi dan membantu autentikasi server, tetapi tidak menjamin bahwa pengelola situs dapat dipercaya.", "Membiarkan pernyataan tersebut karena disampaikan oleh rekan yang lebih senior.", "Menyatakan secara terbuka bahwa rekan tersebut tidak kompeten dalam bidang teknologi.", "Menghindari diskusi keamanan digital agar tidak terjadi perbedaan pendapat."], "answer": 0, "explanation": "HTTPS melindungi komunikasi, tetapi tidak membuktikan bahwa isi atau pemilik situs selalu dapat dipercaya."}, {"section": "SJT", "q": "Seorang peserta didik mencoba menebak kata sandi jaringan Wi-Fi sekolah dengan menggunakan program yang diperolehnya dari internet. Peserta didik beralasan bahwa ia sedang belajar keamanan siber. Respons guru yang paling tepat adalah ....", "options": ["Membiarkannya karena keterampilan tersebut penting bagi calon praktisi keamanan siber.", "Meminta peserta didik melanjutkan percobaan untuk membuktikan kemampuan teknisnya.", "Meminta peserta didik menguji jaringan sekolah lain sebagai pembanding.", "Menghentikan aktivitas tanpa izin, menjelaskan batas etika dan kewenangan, melaporkan kejadian sesuai prosedur, serta mengarahkan praktik keamanan siber ke lingkungan laboratorium yang diizinkan."], "answer": 3, "explanation": "Pengujian keamanan harus memiliki izin dan dilakukan dalam lingkungan yang sah serta terkendali."}, {"section": "SJT", "q": "Sekolah melakukan peninjauan kurikulum. Guru Informatika menemukan bahwa beberapa tujuan pembelajaran dan asesmen yang direncanakannya belum sepenuhnya sesuai dengan capaian pembelajaran yang digunakan sekolah. Apa langkah yang paling tepat?", "options": ["Mempertahankan semua perangkat ajar karena sudah digunakan pada tahun sebelumnya.", "Menelaah capaian pembelajaran, menyesuaikan tujuan dan alur pembelajaran, lalu menyelaraskan aktivitas serta asesmen dengan kompetensi yang ditargetkan.", "Mengganti semua materi dengan aplikasi yang sedang populer tanpa meninjau capaian pembelajaran.", "Mengikuti urutan buku teks secara mutlak tanpa mempertimbangkan kebutuhan peserta didik."], "answer": 1, "explanation": "Perangkat ajar perlu diselaraskan dengan capaian pembelajaran, aktivitas, dan asesmen yang relevan."}, {"section": "SJT", "q": "Guru memberikan proyek pembuatan presentasi digital yang harus dikerjakan di rumah. Setelah beberapa hari, guru mengetahui bahwa sebagian peserta didik tidak memiliki komputer atau akses internet yang memadai. Tindakan yang paling tepat adalah ....", "options": ["Menyediakan alternatif pengerjaan luring, akses perangkat di sekolah atau laboratorium, maupun format tugas yang dapat diakses dengan fasilitas terbatas tanpa mengubah tujuan kompetensi utama.", "Memberikan nilai lebih rendah kepada peserta didik yang tidak memiliki perangkat.", "Menganggap keterbatasan perangkat sebagai tanggung jawab keluarga sepenuhnya.", "Mengharuskan semua peserta didik membeli perangkat yang sama."], "answer": 0, "explanation": "Alternatif akses dan pengerjaan menjaga kesempatan belajar tanpa menurunkan kompetensi yang ditargetkan."}, {"section": "SJT", "q": "Seorang peserta didik menyerahkan laporan tentang jaringan komputer yang sebagian besar disalin dari sebuah situs tanpa mencantumkan sumber. Guru ingin memperbaiki perilaku akademik sekaligus memastikan peserta didik memahami materi. Apa tindakan yang paling tepat?", "options": ["Langsung memberikan nilai tertinggi karena informasi yang disajikan terlihat lengkap.", "Mengabaikan persoalan karena tugas tersebut bukan karya ilmiah tingkat perguruan tinggi.", "Menjelaskan prinsip atribusi sumber, meminta peserta didik memperbaiki laporan dengan pemahaman dan bahasa sendiri, serta menerapkan ketentuan penilaian secara konsisten.", "Mengumumkan nama peserta didik sebagai pelaku plagiarisme di depan sekolah."], "answer": 2, "explanation": "Pendidikan integritas akademik perlu disertai pembimbingan, perbaikan karya, dan penerapan aturan yang konsisten."}, {"section": "SJT", "q": "Seorang orang tua meminta guru mengumumkan nilai anaknya melalui grup WhatsApp kelas agar orang tua lain mengetahui perkembangan akademik anak tersebut. Apa respons guru yang paling tepat?", "options": ["Mengirimkan nilai lengkap karena orang tua meminta secara langsung.", "Mengirimkan nilai semua peserta didik agar perlakuannya sama.", "Mengirimkan nilai dengan nomor induk sebagai pengganti nama tanpa menilai risiko identifikasi.", "Menyampaikan informasi perkembangan belajar anak melalui saluran komunikasi pribadi yang sesuai dengan kebijakan sekolah dan menjaga kerahasiaan data peserta didik lain."], "answer": 3, "explanation": "Informasi nilai merupakan data pribadi yang perlu disampaikan melalui saluran komunikasi yang tepat."}, {"section": "SJT", "q": "Setelah melakukan observasi pembelajaran Informatika, guru pamong menyampaikan bahwa guru terlalu banyak menjelaskan dan kurang memberi kesempatan peserta didik menelusuri algoritma sendiri. Guru merasa telah mempersiapkan pembelajaran dengan baik. Respons yang paling tepat adalah ....", "options": ["Menolak masukan karena rencana pembelajaran sudah sesuai dengan perangkat ajar.", "Meminta contoh yang lebih spesifik, merefleksikan bukti pembelajaran, dan mencoba memperbaiki proporsi aktivitas peserta didik pada pertemuan berikutnya.", "Mengganti seluruh strategi pembelajaran tanpa menganalisis masukan yang diberikan.", "Menghindari observasi selanjutnya agar tidak menerima kritik serupa."], "answer": 1, "explanation": "Refleksi berbasis masukan konkret membantu guru meningkatkan praktik pembelajaran."}, {"section": "SJT", "q": "Dua peserta didik berselisih karena berbeda pendapat tentang desain aplikasi. Salah satu peserta didik mendominasi keputusan, sementara anggota lainnya berhenti berkontribusi. Tindakan guru yang paling tepat adalah ....", "options": ["Memfasilitasi dialog, meminta setiap anggota menjelaskan alasan berdasarkan kebutuhan pengguna dan kriteria proyek, lalu menyepakati pembagian tugas yang adil.", "Membiarkan konflik karena peserta didik harus menyelesaikan semua persoalan sendiri.", "Memilih desain peserta didik yang paling cepat menyelesaikan kode.", "Membatalkan proyek kedua peserta didik tanpa mendengarkan penjelasan."], "answer": 0, "explanation": "Fasilitasi dialog dan pembagian peran mendorong penyelesaian konflik secara adil dan produktif."}, {"section": "SJT", "q": "Peserta didik dapat menjelaskan bahwa perulangan digunakan untuk menjalankan instruksi berulang kali, tetapi sering keliru menentukan berapa kali sebuah program dijalankan. Guru ingin memperbaiki pemahaman konsep tersebut. Strategi yang paling tepat adalah ....", "options": ["Meminta peserta didik menghafalkan sintaks perulangan.", "Memberikan program yang lebih panjang agar peserta didik terbiasa.", "Menggunakan contoh sederhana, tabel penelusuran nilai variabel, dan prediksi keluaran sebelum program dijalankan.", "Menghindari materi perulangan dan langsung mengajarkan fungsi."], "answer": 2, "explanation": "Tabel penelusuran dan contoh konkret membantu peserta didik memahami jumlah iterasi serta perubahan variabel."}, {"section": "SJT", "q": "Peserta didik membuat proyek analisis data kehadiran siswa. Dataset yang tersedia memuat nama lengkap, nomor induk, dan catatan alasan ketidakhadiran yang bersifat pribadi. Apa tindakan yang paling tepat?", "options": ["Menggunakan seluruh data karena proyek dilakukan untuk kepentingan pendidikan.", "Membatasi data sesuai kebutuhan analisis, menghilangkan identitas yang tidak diperlukan, dan memastikan penggunaan data mengikuti izin serta kebijakan yang berlaku.", "Mengunggah data ke media sosial agar peserta didik lain dapat memberikan masukan.", "Meminta peserta didik menghafalkan data tersebut sebagai latihan pengolahan informasi."], "answer": 1, "explanation": "Pengolahan data harus mengikuti prinsip pembatasan tujuan, minimisasi data, dan perlindungan identitas."}, {"section": "SJT", "q": "Dalam proyek klasifikasi sederhana, peserta didik menemukan bahwa model lebih sering memberikan hasil yang merugikan kelompok tertentu. Guru ingin menjadikan temuan ini sebagai pengalaman belajar. Tindakan yang paling tepat adalah ....", "options": ["Menyatakan model benar karena komputer tidak memiliki emosi.", "Menghapus semua data kelompok yang hasilnya kurang baik agar akurasi meningkat.", "Mengabaikan hasil tersebut karena bias tidak berkaitan dengan Informatika.", "Memeriksa representasi data, cara pelabelan, dan hasil model pada kelompok berbeda, kemudian membahas bias, keterbatasan model, dan kemungkinan perbaikannya."], "answer": 3, "explanation": "Evaluasi bias memerlukan pemeriksaan data dan keluaran model, bukan sekadar menerima hasil sistem."}, {"section": "SJT", "q": "Guru harus melaksanakan pembelajaran Informatika secara daring. Sebagian peserta didik hanya memiliki koneksi internet yang tidak stabil dan kesulitan mengikuti konferensi video dalam waktu lama. Pilihan yang paling tepat adalah ....", "options": ["Menyediakan materi berukuran kecil, instruksi tertulis, aktivitas asinkron, serta alternatif pengumpulan tugas yang tetap mengukur tujuan pembelajaran.", "Mewajibkan seluruh peserta didik mengikuti konferensi video tanpa pengecualian.", "Mengurangi nilai semua peserta didik yang tidak dapat mengikuti video secara langsung.", "Menunda seluruh pembelajaran sampai semua peserta didik memiliki koneksi yang sama."], "answer": 0, "explanation": "Materi asinkron dan berukuran kecil membantu akses pembelajaran dalam keterbatasan jaringan."}, {"section": "SJT", "q": "Seorang peserta didik melaporkan bahwa akun belajarnya digunakan orang lain. Peserta didik tersebut masih dapat mengakses sebagian layanan, tetapi menemukan aktivitas yang tidak dikenalnya. Apa saran guru yang paling tepat?", "options": ["Meminta peserta didik membalas dengan mencoba masuk ke akun orang yang diduga meretas.", "Meminta peserta didik mengirimkan kata sandinya kepada guru melalui grup kelas.", "Membantu peserta didik mengamankan akun melalui prosedur pemulihan resmi, mengganti kata sandi dari perangkat tepercaya, mengaktifkan autentikasi multifaktor jika tersedia, dan melaporkan kejadian kepada pengelola layanan.", "Mengabaikan laporan karena insiden akun bukan bagian dari pembelajaran Informatika."], "answer": 2, "explanation": "Pemulihan akun melalui prosedur resmi, pengamanan kredensial, dan pelaporan merupakan langkah penanganan yang tepat."}, {"section": "SJT", "q": "Saat mendemonstrasikan program di depan kelas, guru menemukan bahwa kode yang telah disiapkan menghasilkan keluaran yang salah. Peserta didik menunggu penjelasan. Apa tindakan yang paling tepat?", "options": ["Mengganti topik tanpa menjelaskan kesalahan.", "Menunjukkan proses debugging secara sistematis, memeriksa asumsi dan nilai variabel, kemudian menjelaskan bagaimana kesalahan ditemukan dan diperbaiki.", "Menyalahkan perangkat komputer karena program tidak berjalan sesuai harapan.", "Menyembunyikan kesalahan dan langsung menampilkan hasil akhir."], "answer": 1, "explanation": "Debugging secara terbuka menunjukkan proses pemecahan masalah yang sistematis dan dapat diteladani peserta didik."}, {"section": "SJT", "q": "Pada akhir pertemuan, guru menyadari bahwa sebagian besar waktu digunakan untuk menjelaskan materi. Peserta didik belum cukup berlatih dan guru belum memiliki bukti yang memadai tentang penguasaan tujuan pembelajaran. Tindakan yang paling tepat adalah ....", "options": ["Memaksakan semua materi selesai meskipun peserta didik belum memahami konsep utama.", "Memberikan banyak pekerjaan rumah tanpa mengetahui kesulitan peserta didik.", "Menganggap pembelajaran berhasil karena seluruh materi telah dijelaskan.", "Memeriksa pemahaman melalui asesmen singkat, memprioritaskan kompetensi yang belum dikuasai, dan merencanakan tindak lanjut berdasarkan hasilnya."], "answer": 3, "explanation": "Asesmen singkat membantu guru menentukan kompetensi yang perlu diprioritaskan dan diperbaiki."}, {"section": "SJT", "q": "Seorang peserta didik mengalami masalah keluarga yang memengaruhi konsentrasinya. Ia meminta guru menaikkan nilai proyek Informatika agar tidak mendapat hasil belajar yang buruk. Hasil pekerjaannya belum memenuhi beberapa kriteria penilaian. Respons guru yang paling tepat adalah ....", "options": ["Menunjukkan empati, menjelaskan kriteria secara transparan, dan menawarkan dukungan atau kesempatan perbaikan yang sesuai dengan kebijakan penilaian sekolah.", "Langsung menaikkan nilai tanpa memeriksa kompetensi yang telah dicapai.", "Menolak berbicara dengan peserta didik karena masalah keluarga tidak relevan dengan pembelajaran.", "Menyampaikan masalah keluarga tersebut kepada seluruh kelas agar teman-temannya memahami kondisinya."], "answer": 0, "explanation": "Empati perlu berjalan bersama transparansi penilaian, dukungan belajar, dan konsistensi kriteria."}, {"section": "PCK", "q": "Guru meminta peserta didik merancang sistem peminjaman buku perpustakaan. Peserta didik memasukkan banyak detail, seperti warna sampul, jenis huruf pada sampul, dan bentuk rak, padahal detail tersebut tidak diperlukan untuk menghitung peminjaman dan pengembalian. Strategi yang paling tepat untuk mengajarkan abstraksi adalah ....", "options": ["Meminta peserta didik memasukkan semua informasi yang dapat ditemukan tentang buku.", "Membimbing peserta didik memilih informasi yang relevan dengan tujuan sistem, seperti identitas buku, identitas peminjam, tanggal peminjaman, dan tanggal pengembalian.", "Meminta peserta didik menghapus seluruh informasi buku kecuali judulnya.", "Mengajarkan sintaks pemrograman terlebih dahulu tanpa membahas kebutuhan sistem."], "answer": 1, "explanation": "Abstraksi berfokus pada informasi yang relevan dengan tujuan pemecahan masalah dan mengabaikan detail yang tidak diperlukan."}, {"section": "PCK", "q": "Peserta didik diminta merancang aplikasi sederhana untuk inventaris laboratorium komputer. Mereka kesulitan karena mencoba merancang seluruh aplikasi sekaligus. Pendekatan yang paling tepat untuk mengajarkan dekomposisi adalah ....", "options": ["Meminta peserta didik langsung menulis seluruh kode dalam satu program panjang.", "Mengurangi kebutuhan aplikasi agar peserta didik tidak perlu merancang sistem.", "Memberikan kode lengkap dan meminta peserta didik menyalinnya.", "Membimbing peserta didik membagi masalah menjadi bagian yang lebih kecil, misalnya pencatatan perangkat, pencatatan kondisi, peminjaman, dan pengembalian."], "answer": 3, "explanation": "Dekomposisi membagi masalah kompleks menjadi bagian-bagian yang lebih kecil dan lebih mudah ditangani."}, {"section": "PCK", "q": "Seorang peserta didik menuliskan kode berikut, tetapi berpendapat bahwa program tersebut menampilkan angka 1 sampai 5:<pre><code>for i in range(5):\n    print(i)</code></pre>Strategi pembelajaran yang paling tepat adalah ....", "options": ["Menjalankan program, meminta peserta didik memprediksi hasilnya, lalu menelusuri perubahan nilai <code>i</code> untuk menjelaskan bahwa <code>range(5)</code> menghasilkan 0 sampai 4.", "Meminta peserta didik menghafalkan bahwa semua perulangan dimulai dari angka 1.", "Mengganti seluruh materi perulangan dengan materi variabel.", "Memberikan jawaban benar tanpa meminta peserta didik menjelaskan pemikirannya."], "answer": 0, "explanation": "<code>range(5)</code> menghasilkan urutan 0, 1, 2, 3, 4. Penelusuran langsung membantu memperbaiki miskonsepsi."}, {"section": "PCK", "q": "Peserta didik mampu menyalin algoritma dari contoh, tetapi kesulitan menentukan keluaran ketika nilai masukan berubah. Guru ingin mengetahui apakah peserta didik memahami alur algoritma, bukan sekadar menghafal kode. Teknik asesmen yang paling tepat adalah ....", "options": ["Meminta peserta didik menghafalkan seluruh sintaks program.", "Menilai kecepatan peserta didik mengetik kode.", "Meminta peserta didik menelusuri algoritma menggunakan masukan baru, mencatat perubahan variabel, dan menjelaskan keluaran pada setiap tahap.", "Menilai tampilan dokumen laporan tanpa memeriksa logika algoritma."], "answer": 2, "explanation": "Penelusuran langkah demi langkah memperlihatkan apakah peserta didik memahami perubahan variabel dan alur algoritma."}, {"section": "PCK", "q": "Perhatikan pseudocode berikut. Dengan asumsi batas 1 sampai 4 bersifat inklusif, keluaran yang benar adalah ....<pre><code>total <- 0\nUNTUK i DARI 1 SAMPAI 4:\n    total <- total + i\nCETAK total</code></pre>", "options": ["10", "6", "4", "11"], "answer": 0, "explanation": "Totalnya adalah 1 + 2 + 3 + 4 = 10."}, {"section": "PCK", "q": "Perhatikan program Python berikut:<pre><code>x = 7\n\nif x > 5:\n    print(\"A\")\nelse:\n    print(\"B\")</code></pre>Keluaran program tersebut adalah ....", "options": ["<code>B</code>", "<code>7</code>", "Tidak ada keluaran.", "<code>A</code>"], "answer": 3, "explanation": "Karena 7 lebih besar daripada 5, kondisi bernilai benar dan program mencetak A."}, {"section": "PCK", "q": "Perhatikan kode berikut:<pre><code>for i in range(1, 5):\n    print(i)</code></pre>Urutan angka yang dicetak adalah ....", "options": ["1, 2, 3, 4, 5", "1, 2, 3, 4", "0, 1, 2, 3, 4", "1, 2, 3, 5"], "answer": 1, "explanation": "Batas awal <code>range()</code> termasuk, sedangkan batas akhirnya tidak termasuk."}, {"section": "PCK", "q": "Perhatikan kode berikut:<pre><code>nilai = [72, 85, 90]\nprint(nilai[1])</code></pre>Apa keluaran program tersebut?", "options": ["72", "90", "85", "Terjadi kesalahan indeks."], "answer": 2, "explanation": "Indeks list Python dimulai dari 0, sehingga <code>nilai[1]</code> adalah elemen kedua, yaitu 85."}, {"section": "PCK", "q": "Perhatikan program berikut:<pre><code>data = [1, 2]\ndata.append([3, 4])\nprint(len(data))</code></pre>Berapakah keluaran program tersebut?", "options": ["3", "4", "2", "5"], "answer": 0, "explanation": "<code>append([3, 4])</code> menambahkan satu elemen berupa list ke dalam list awal. Panjang akhirnya adalah 3."}, {"section": "PCK", "q": "Seorang guru ingin mengajarkan fungsi yang menghitung luas persegi panjang. Hasil perhitungan tersebut akan digunakan kembali oleh bagian program lainnya. Pernyataan yang paling tepat adalah ....", "options": ["Fungsi harus selalu menggunakan <code>print()</code> dan tidak boleh menggunakan <code>return</code>.", "<code>return</code> hanya berfungsi untuk menampilkan teks ke layar.", "<code>print()</code> dan <code>return</code> selalu memiliki fungsi yang sama.", "<code>return</code> mengembalikan nilai kepada pemanggil fungsi sehingga hasilnya dapat disimpan atau digunakan kembali."], "answer": 3, "explanation": "<code>return</code> mengembalikan nilai kepada pemanggil fungsi, sedangkan <code>print()</code> digunakan untuk menampilkan keluaran."}, {"section": "PCK", "q": "Perhatikan ekspresi Python berikut:<pre><code>not (True and False) or False</code></pre>Hasil evaluasi ekspresi tersebut adalah ....", "options": ["<code>False</code>", "<code>True</code>", "Tidak memiliki nilai logika.", "Terjadi kesalahan sintaks."], "answer": 1, "explanation": "<code>True and False</code> bernilai False; negasinya True, kemudian <code>True or False</code> menghasilkan True."}, {"section": "PCK", "q": "Dalam pembelajaran sistem bilangan, peserta didik diminta mengonversi bilangan biner <code>10110</code> ke bilangan desimal. Hasil yang benar adalah ....", "options": ["18", "20", "22", "24"], "answer": 2, "explanation": "Nilai biner 10110 adalah 16 + 4 + 2 = 22 dalam desimal."}, {"section": "PCK", "q": "Guru meminta peserta didik merancang tabel data anggota perpustakaan. Setiap anggota harus dapat dibedakan secara unik meskipun beberapa anggota memiliki nama yang sama. Konsep yang paling tepat digunakan adalah ....", "options": ["<em>Primary key</em> yang mengidentifikasi setiap rekaman secara unik dan tidak boleh bernilai kosong.", "Kolom nama yang boleh berulang tanpa identitas pembeda.", "Kolom deskripsi yang berisi keterangan bebas.", "<em>Foreign key</em> yang selalu harus menjadi identitas utama tabel."], "answer": 0, "explanation": "Primary key mengidentifikasi setiap rekaman secara unik dan tidak boleh bernilai kosong."}, {"section": "PCK", "q": "Sebuah tabel bernama <code>siswa</code> memiliki kolom <code>nama</code> dan <code>nilai</code>. Guru ingin menampilkan nama peserta didik yang memperoleh nilai minimal 80. Perintah SQL yang tepat adalah ....", "options": ["<code>SELECT nama FROM siswa;</code>", "<code>SELECT * WHERE nilai &gt;= 80;</code>", "<code>SELECT nama FROM siswa WHERE nilai &lt; 80;</code>", "<code>SELECT nama FROM siswa WHERE nilai &gt;= 80;</code>"], "answer": 3, "explanation": "Klausa <code>WHERE nilai &gt;= 80</code> menyaring peserta didik dengan nilai minimal 80."}, {"section": "PCK", "q": "Peserta didik memiliki data nilai numerik pada sel B2 sampai B10. Guru meminta mereka menghitung nilai rata-rata dari rentang tersebut menggunakan spreadsheet. Rumus yang tepat adalah ....", "options": ["<code>=SUM(B2:B10)</code>", "<code>=AVERAGE(B2:B10)</code>", "<code>=COUNT(B2:B10)</code>", "<code>=MAX(B2:B10)</code>"], "answer": 1, "explanation": "Fungsi <code>AVERAGE</code> menghitung rata-rata nilai numerik dalam rentang yang ditentukan."}, {"section": "PCK", "q": "Peserta didik mengumpulkan data jumlah pengguna laboratorium komputer setiap bulan selama satu tahun. Guru ingin membantu mereka melihat perubahan dan kecenderungan jumlah pengguna dari waktu ke waktu. Visualisasi yang paling sesuai adalah ....", "options": ["Diagram lingkaran untuk setiap nilai bulanan tanpa memperhatikan urutan waktu.", "Histogram untuk mengelompokkan jumlah pengguna berdasarkan interval nilai.", "Diagram garis dengan bulan sebagai sumbu waktu dan jumlah pengguna sebagai nilai yang diamati.", "Diagram pencar tanpa mempertimbangkan urutan waktu."], "answer": 2, "explanation": "Diagram garis sesuai untuk menunjukkan perubahan dan kecenderungan data sepanjang waktu."}, {"section": "PCK", "q": "Dalam dataset waktu penyelesaian tugas pemrograman, sebagian besar peserta didik menyelesaikan tugas dalam waktu 30 sampai 60 menit. Namun, satu peserta didik memerlukan waktu 300 menit karena mengalami gangguan perangkat. Pernyataan yang paling tepat adalah ....", "options": ["Median relatif tidak terpengaruh oleh satu nilai ekstrem dibandingkan dengan rata-rata aritmetika.", "Rata-rata selalu lebih tahan terhadap pencilan daripada median.", "Modus selalu merupakan ukuran pemusatan yang paling tepat untuk semua jenis data.", "Pencilan tidak pernah memengaruhi ukuran pemusatan."], "answer": 0, "explanation": "Median lebih tahan terhadap pengaruh nilai ekstrem dibandingkan rata-rata aritmetika."}, {"section": "PCK", "q": "Guru ingin mengetahui kebiasaan penggunaan internet seluruh peserta didik di sekolah. Guru hanya menyebarkan survei melalui akun media sosial sekolah dan memperoleh jawaban dari peserta didik yang aktif menggunakan platform tersebut. Apa kelemahan utama metode tersebut?", "options": ["Data pasti tidak dapat diolah menggunakan komputer.", "Data tidak dapat disajikan dalam bentuk tabel.", "Survei daring selalu menghasilkan sampel yang representatif.", "Sampel berpotensi bias karena peserta didik yang tidak aktif menggunakan platform tersebut mungkin tidak terwakili."], "answer": 3, "explanation": "Sampel yang hanya berasal dari pengguna aktif platform berpotensi tidak mewakili seluruh populasi."}, {"section": "PCK", "q": "Guru ingin mengajarkan <em>binary search</em> kepada peserta didik menggunakan daftar nomor inventaris komputer. Kondisi yang diperlukan agar pencarian biner dapat diterapkan secara benar adalah ....", "options": ["Data harus diacak sebelum pencarian.", "Data harus tersusun menurut urutan yang digunakan dalam pencarian.", "Data harus berjumlah tepat dua elemen.", "Data harus berupa teks dan tidak boleh berupa angka."], "answer": 1, "explanation": "Binary search mengandalkan data yang telah terurut agar ruang pencarian dapat dipersempit dengan benar."}, {"section": "PCK", "q": "Diberikan daftar <code>[5, 2, 4, 1]</code>. Algoritma Bubble Sort mengurutkan data secara menaik dengan membandingkan elemen yang bersebelahan dari kiri ke kanan dan menukar posisinya apabila urutannya salah. Setelah satu lintasan penuh dari kiri ke kanan, hasil daftar adalah ....", "options": ["<code>[1, 2, 4, 5]</code>", "<code>[2, 5, 4, 1]</code>", "<code>[2, 4, 1, 5]</code>", "<code>[5, 2, 4, 1]</code>"], "answer": 2, "explanation": "Setelah satu lintasan, daftar berubah menjadi <code>[2, 4, 1, 5]</code>; nilai terbesar berpindah ke posisi terakhir."}, {"section": "PCK", "q": "Seorang peserta didik ingin mencetak angka 1 sampai 5 menggunakan Python, tetapi hanya memperoleh angka 1 sampai 4. Potongan kode yang tepat untuk memperbaiki masalah tersebut adalah ....", "options": ["<code>for i in range(1, 6):</code>", "<code>for i in range(1, 5):</code>", "<code>for i in range(0, 5):</code>", "<code>for i in range(5):</code>"], "answer": 0, "explanation": "<code>range(1, 6)</code> menghasilkan 1, 2, 3, 4, 5 karena batas akhirnya tidak termasuk."}, {"section": "PCK", "q": "Peserta didik membuat halaman web sederhana. Guru ingin memastikan mereka memahami perbedaan fungsi HTML dan CSS. Pernyataan yang tepat adalah ....", "options": ["HTML hanya mengatur warna, sedangkan CSS mengatur struktur dokumen.", "HTML dan CSS merupakan dua bahasa pemrograman yang memiliki fungsi identik.", "CSS digunakan untuk menyimpan seluruh data pengguna, sedangkan HTML untuk menjalankan basis data.", "HTML digunakan untuk menyusun struktur dan konten halaman, sedangkan CSS mengatur presentasi dan tampilannya."], "answer": 3, "explanation": "HTML menyusun struktur dan konten, sedangkan CSS mengatur presentasi visual halaman."}, {"section": "PCK", "q": "Peserta didik membuat halaman web yang memiliki bagian khusus berisi tautan navigasi utama. Guru ingin mereka menggunakan elemen HTML yang memiliki makna semantik sesuai fungsinya. Elemen yang paling tepat adalah ....", "options": ["<code>&lt;b&gt;</code>", "<code>&lt;nav&gt;</code>", "<code>&lt;span&gt;</code>", "<code>&lt;i&gt;</code>"], "answer": 1, "explanation": "Elemen <code>&lt;nav&gt;</code> secara semantik digunakan untuk bagian navigasi."}, {"section": "PCK", "q": "Guru memperlihatkan aplikasi sederhana dengan tombol. Ketika tombol diklik, aplikasi menampilkan pesan tertentu. Guru menjelaskan bahwa program dapat merespons tindakan pengguna. Konsep yang paling sesuai adalah ....", "options": ["Pemrograman yang hanya menjalankan instruksi secara berurutan tanpa interaksi.", "Penyimpanan data dalam tabel relasional.", "Pemrograman berbasis peristiwa (<em>event-driven programming</em>).", "Pemrosesan yang hanya menggunakan perulangan."], "answer": 2, "explanation": "Event-driven programming menjalankan respons berdasarkan peristiwa, seperti klik tombol."}, {"section": "PCK", "q": "Peserta didik sedang mempelajari jaringan komputer. Guru meminta mereka membedakan fungsi <em>switch</em> dan <em>router</em>. Pernyataan yang paling tepat adalah ....", "options": ["Switch meneruskan data antarperangkat dalam jaringan lokal berdasarkan informasi alamat MAC, sedangkan router meneruskan paket ant jaringan berdasarkan informasi alamat IP.", "Switch selalu menghubungkan jaringan yang berbeda, sedangkan router hanya menghubungkan perangkat dalam satu segmen LAN.", "Switch dan router selalu memiliki fungsi yang identik.", "Router hanya berfungsi menyimpan berkas, sedangkan switch berfungsi menjalankan aplikasi."], "answer": 0, "explanation": "Switch umumnya meneruskan data dalam LAN menggunakan informasi MAC, sedangkan router meneruskan paket ant jaringan menggunakan informasi IP."}, {"section": "PCK", "q": "Seorang peserta didik berpendapat bahwa semua situs HTTPS pasti aman untuk melakukan transaksi karena tidak mungkin digunakan untuk penipuan. Penjelasan guru yang paling tepat adalah ....", "options": ["HTTPS menjamin semua informasi di situs benar dan semua transaksi pasti aman.", "HTTPS secara otomatis menghapus seluruh malware dari perangkat pengguna.", "HTTPS tidak memberikan perlindungan terhadap komunikasi data.", "HTTPS melindungi komunikasi melalui TLS dan membantu mengautentikasi server, tetapi tidak menjamin bahwa pemilik situs selalu dapat dipercaya atau bebas dari penipuan."], "answer": 3, "explanation": "HTTPS membantu melindungi komunikasi, tetapi tidak menjamin bahwa situs bebas dari penipuan."}, {"section": "PCK", "q": "Seorang peserta didik menerima email yang mengaku berasal dari layanan sekolah. Email tersebut meminta kata sandi dan mengarahkan penerima ke tautan dengan alamat yang tidak dikenal. Tindakan yang paling tepat adalah ....", "options": ["Membuka tautan tersebut untuk mengetahui apakah tampilannya menyerupai situs resmi.", "Tidak membuka tautan atau memberikan kata sandi, memeriksa alamat pengirim dan tujuan tautan secara independen, serta melaporkan pesan tersebut melalui saluran yang sesuai.", "Membalas email dengan mengirimkan informasi akun agar pengirim dapat memverifikasi identitas.", "Meneruskan email ke seluruh kelas tanpa penjelasan."], "answer": 1, "explanation": "Memeriksa pengirim dan tujuan tautan secara independen serta tidak membagikan kredensial mengurangi risiko phishing."}, {"section": "PCK", "q": "Dalam materi keamanan sistem informasi, guru menjelaskan bahwa aplikasi perlu menyimpan informasi autentikasi pengguna secara aman. Pendekatan yang paling tepat untuk menyimpan kata sandi adalah ....", "options": ["Menyimpan kata sandi dalam teks biasa agar mudah dibaca administrator.", "Mengenkripsi kata sandi menggunakan metode yang dapat dibalik sebagai satu-satunya perlindungan.", "Menggunakan fungsi hashing khusus kata sandi yang sesuai, dengan salt unik dan pengaturan kerja yang memadai.", "Menggunakan kata sandi yang sama untuk seluruh akun agar pengelolaan lebih mudah."], "answer": 2, "explanation": "Kata sandi sebaiknya disimpan menggunakan fungsi hashing khusus kata sandi dengan salt unik dan parameter yang sesuai."}, {"section": "PCK", "q": "Peserta didik menggunakan aplikasi web untuk mencari informasi dari basis data sekolah. Mereka diminta menjelaskan hubungan antara perangkat pengguna dan server. Penjelasan yang paling tepat adalah ....", "options": ["Client mengirimkan permintaan, sedangkan server memproses permintaan tersebut dan memberikan respons sesuai layanan yang tersedia.", "Server selalu berupa komputer yang tidak terhubung ke jaringan.", "Client tidak pernah mengirimkan permintaan kepada server.", "Arsitektur client-server tidak membutuhkan pertukaran data."], "answer": 0, "explanation": "Client mengirim permintaan dan server memberikan respons sesuai layanan yang diminta."}, {"section": "PCK", "q": "Dalam proyek pemrograman kelompok, beberapa peserta didik mengubah berkas kode yang sama. Guru ingin mereka dapat melacak perubahan dan bekerja secara kolaboratif. Manfaat utama Git dalam konteks tersebut adalah ....", "options": ["Mengenkripsi seluruh kode secara otomatis.", "Menggantikan kebutuhan pengujian perangkat lunak.", "Menjamin tidak akan pernah terjadi konflik penggabungan kode.", "Mencatat riwayat perubahan, mendukung pembuatan commit dan branch, serta membantu kolaborasi dan peninjauan perubahan kode."], "answer": 3, "explanation": "Git membantu pencatatan perubahan, pengelolaan versi, percabangan, dan kolaborasi kode."}, {"section": "PCK", "q": "Peserta didik membuat proyek Internet of Things (IoT) menggunakan sensor suhu. Data yang dikumpulkan menunjukkan perubahan yang sangat tajam pada waktu tertentu, termasuk beberapa nilai yang tidak masuk akal. Langkah analisis yang paling tepat adalah ....", "options": ["Langsung menghapus semua nilai yang berbeda dari rata-rata.", "Memeriksa kalibrasi sensor, cap waktu, kelengkapan data, kondisi pengukuran, dan kemungkinan pencilan sebelum menarik kesimpulan.", "Menganggap semua nilai sensor benar karena dihasilkan secara otomatis.", "Mengubah semua data menjadi nilai yang sama agar grafik terlihat rapi."], "answer": 1, "explanation": "Validasi kualitas data dan kondisi sensor perlu dilakukan sebelum menghapus pencilan atau menarik kesimpulan."}, {"section": "PCK", "q": "Guru memberikan dua contoh penggunaan model pembelajaran mesin: (1) memprediksi apakah sebuah email termasuk spam atau bukan; (2) memperkirakan suhu udara esok hari dalam derajat Celsius. Pernyataan yang paling tepat adalah ....", "options": ["Contoh pertama adalah regresi, sedangkan contoh kedua adalah klasifikasi.", "Kedua contoh selalu merupakan klasifikasi karena menggunakan data komputer.", "Contoh pertama merupakan klasifikasi, sedangkan contoh kedua merupakan regresi apabila targetnya berupa nilai numerik kontinu.", "Kedua contoh tidak dapat diselesaikan menggunakan pembelajaran mesin."], "answer": 2, "explanation": "Klasifikasi memprediksi kategori, sedangkan regresi memprediksi nilai numerik."}, {"section": "PCK", "q": "Seorang peserta didik membangun model klasifikasi. Sebelum membagi dataset menjadi data latih dan data uji, ia menghitung parameter normalisasi menggunakan seluruh dataset. Setelah itu, ia melatih model dan melaporkan kinerja pada data uji. Masalah metodologis yang paling tepat diidentifikasi adalah ....", "options": ["Terjadi risiko kebocoran data karena informasi dari data uji telah digunakan dalam proses prapemrosesan sebelum evaluasi.", "Tidak ada masalah karena normalisasi selalu boleh dilakukan pada seluruh dataset sebelum pembagian.", "Data uji harus selalu digunakan untuk melatih model agar hasilnya lebih akurat.", "Semua proses normalisasi harus dihindari dalam pembelajaran mesin."], "answer": 0, "explanation": "Menggunakan informasi data uji dalam prapemrosesan sebelum pembagian dapat menyebabkan kebocoran data dan estimasi kinerja yang bias."}, {"section": "PCK", "q": "Peserta didik membuat model AI untuk membantu mengelompokkan calon penerima bantuan sekolah. Model menghasilkan prediksi berdasarkan data historis yang ternyata tidak mewakili semua kelompok peserta didik secara adil. Apa arahan guru yang paling tepat?", "options": ["Menggunakan hasil model secara otomatis karena model dianggap objektif.", "Menyembunyikan keterbatasan model agar hasil proyek terlihat baik.", "Mengumpulkan sebanyak mungkin data pribadi tanpa memperhatikan tujuan dan perlindungan data.", "Memeriksa kualitas dan keterwakilan data, mengevaluasi kemungkinan bias, menjelaskan keterbatasan model, serta menekankan pengawasan manusia dan perlindungan data."], "answer": 3, "explanation": "Pengembangan AI yang bertanggung jawab perlu memperhatikan bias, privasi, keterbatasan model, dan pengawasan manusia."}, {"section": "PCK", "q": "Guru memberikan proyek pembuatan aplikasi sederhana. Ia ingin menilai kemampuan berpikir komputasional dan pemrograman peserta didik, bukan hanya tampilan aplikasi yang dihasilkan. Rancangan asesmen yang paling tepat adalah ....", "options": ["Menilai hanya keindahan antarmuka aplikasi.", "Menggunakan rubrik yang menilai pemahaman masalah, dekomposisi, rancangan algoritma, ketepatan kode, pengujian dan debugging, penjelasan solusi, serta kontribusi individu.", "Memberikan nilai berdasarkan jumlah baris kode yang ditulis.", "Memberikan nilai yang sama kepada seluruh peserta didik tanpa memeriksa proses dan hasil kerja."], "answer": 1, "explanation": "Rubrik multidimensi mengukur proses berpikir, kualitas algoritma, implementasi, pengujian, dan pemahaman peserta didik."}];
+const letters = ["A","B","C","D"];
+let answers = Array(questions.length).fill(null);
+let flagged = new Set();
+let current = 0;
+let participant = "Peserta";
+let deadline = 0;
+let timerInterval = null;
+let submitted = false;
+let reviewFilter = "all";
+let autoSubmitted = false;
+
+const $ = (id) => document.getElementById(id);
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(el => el.classList.remove("active"));
+  $(id).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function startTest(){
+  participant = $("participantName").value.trim() || "Peserta";
+  answers = Array(questions.length).fill(null);
+  flagged = new Set();
+  current = 0;
+  submitted = false;
+  autoSubmitted = false;
+  deadline = Date.now() + 120 * 60 * 1000;
+  $("examUser").textContent = "Peserta: " + participant;
+  showScreen("screenExam");
+  renderQuestion();
+  updateTimer();
+  clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimer, 1000);
+}
+function updateTimer(){
+  if(submitted) return;
+  const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+  const mins = Math.floor(seconds / 60).toString().padStart(2,"0");
+  const secs = (seconds % 60).toString().padStart(2,"0");
+  $("timerValue").textContent = mins + ":" + secs;
+  $("timerBox").classList.toggle("warning", seconds <= 300);
+  if(seconds <= 0 && !submitted){
+    autoSubmitted = true;
+    finishTest(true);
+  }
+}
+function renderQuestion(){
+  const q = questions[current];
+  $("questionArea").innerHTML = `
+    <div class="question-meta">
+      <span class="q-number">SOAL ${current+1}</span>
+      <span class="section-badge">${q.section === "SJT" ? "SJT · Situasional" : "PCK · Informatika"}</span>
+      <span class="q-position">${current+1} dari ${questions.length}</span>
+    </div>
+    <div class="question-text">${q.q}</div>
+    <div class="options">
+      ${q.options.map((opt,i)=>`
+        <button class="option ${answers[current]===i ? "selected" : ""}" data-option="${i}" aria-pressed="${answers[current]===i}">
+          <span class="option-letter">${letters[i]}</span><span class="option-text">${opt}</span>
+        </button>`).join("")}
+    </div>`;
+  document.querySelectorAll("[data-option]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      answers[current] = Number(btn.dataset.option);
+      renderQuestion();
+    });
+  });
+  $("prevBtn").disabled = current === 0;
+  $("prevBtn").style.opacity = current === 0 ? ".45" : "1";
+  $("nextBtn").textContent = current === questions.length-1 ? "Ke soal pertama ↑" : "Berikutnya →";
+  $("flagBtn").classList.toggle("marked", flagged.has(current));
+  $("flagBtn").textContent = flagged.has(current) ? "★ Ditandai" : "☆ Tandai";
+  const answered = answers.filter(a=>a!==null).length;
+  $("answeredCount").textContent = answered;
+  $("unansweredCount").textContent = questions.length-answered;
+  $("progressFill").style.width = (answered/questions.length*100) + "%";
+  renderNavigator();
+}
+function renderNavigator(){
+  $("navigator").innerHTML = questions.map((q,i)=>{
+    const classes = ["nav-q"];
+    if(answers[i] !== null) classes.push("done");
+    if(flagged.has(i)) classes.push("flag");
+    if(i===current) classes.push("current");
+    return `<button class="${classes.join(" ")}" data-nav="${i}" aria-label="Buka soal ${i+1}" title="Soal ${i+1}${answers[i]!==null?" · terjawab":""}${flagged.has(i)?" · ditandai":""}">${i+1}</button>`;
+  }).join("");
+  document.querySelectorAll("[data-nav]").forEach(btn=>{
+    btn.addEventListener("click",()=>{current=Number(btn.dataset.nav);renderQuestion();});
+  });
+}
+function moveNext(){
+  current = current === questions.length-1 ? 0 : current+1;
+  renderQuestion();
+}
+function openSubmitModal(){
+  const answered = answers.filter(a=>a!==null).length;
+  const unanswered = questions.length-answered;
+  $("confirmMessage").textContent = unanswered
+    ? `Anda sudah menjawab ${answered} dari ${questions.length} soal. Masih ada ${unanswered} soal kosong. Tetap kumpulkan ujian?`
+    : `Semua ${questions.length} soal sudah dijawab. Apakah Anda yakin ingin mengumpulkan ujian?`;
+  $("confirmModal").classList.add("show");
+}
+function closeSubmitModal(){$("confirmModal").classList.remove("show");}
+function finishTest(fromTimer=false, alreadyConfirmed=false){
+  if(submitted) return;
+  if(!fromTimer && !alreadyConfirmed){
+    const unanswered = answers.filter(a=>a===null).length;
+    if(!window.confirm(unanswered ? `Masih ada ${unanswered} soal yang belum dijawab. Kumpulkan ujian sekarang?` : "Kumpulkan ujian sekarang?")) return;
+  }
+  submitted = true;
+  clearInterval(timerInterval);
+  closeSubmitModal();
+  renderResults();
+  showScreen("screenResult");
+}
+function scoreFor(section){
+  const subset = questions.map((q,i)=>({q,i})).filter(x=>x.q.section===section);
+  const correct = subset.filter(x=>answers[x.i]===x.q.answer).length;
+  return {correct,total:subset.length,percent:Math.round(correct/subset.length*100)};
+}
+function renderResults(){
+  const correct = questions.filter((q,i)=>answers[i]===q.answer).length;
+  const wrong = answers.filter((a,i)=>a!==null && a!==questions[i].answer).length;
+  const unanswered = answers.filter(a=>a===null).length;
+  const percent = Math.round(correct/questions.length*100);
+  const sjt = scoreFor("SJT");
+  const pck = scoreFor("PCK");
+  $("resultHero").innerHTML = `
+    <span class="eyebrow">Hasil simulasi selesai</span>
+    <h1>${escapeHtml(participant)}, latihan Anda selesai.</h1>
+    <p>Ringkasan hasil latihan 65 soal bidang Informatika. Ini merupakan skor simulasi mandiri, bukan hasil resmi UKPPPG.</p>
+    <div class="score-big">${percent}<span style="font-size:.42em;letter-spacing:0">/100</span></div>
+    <div style="font-weight:800">Skor latihan total</div>
+    <div class="result-stats">
+      <div class="result-stat"><strong>${correct}</strong><span>Jawaban benar</span></div>
+      <div class="result-stat"><strong>${wrong}</strong><span>Jawaban salah</span></div>
+      <div class="result-stat"><strong>${unanswered}</strong><span>Belum dijawab</span></div>
+      <div class="result-stat"><strong>65</strong><span>Total soal</span></div>
+    </div>`;
+  $("sjText").textContent = `${sjt.correct}/${sjt.total} · ${sjt.percent}%`;
+  $("pckText").textContent = `${pck.correct}/${pck.total} · ${pck.percent}%`;
+  $("sjBar").style.width = sjt.percent+"%";
+  $("pckBar").style.width = pck.percent+"%";
+  $("reviewBtn").textContent = "Lihat pembahasan";
+  $("reviewWrap").classList.add("hidden");
+  reviewFilter = "all";
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b.dataset.filter==="all"));
+  renderReview();
+}
+function escapeHtml(value){
+  return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+}
+function renderReview(){
+  let indices = questions.map((q,i)=>i);
+  if(reviewFilter==="wrong") indices = indices.filter(i=>answers[i]!==null && answers[i]!==questions[i].answer);
+  if(reviewFilter==="unanswered") indices = indices.filter(i=>answers[i]===null);
+  if(indices.length===0){
+    $("reviewList").innerHTML = `<div class="empty-review">Tidak ada soal dalam kategori ini.</div>`;
+    return;
+  }
+  $("reviewList").innerHTML = indices.map(i=>{
+    const q=questions[i], chosen=answers[i];
+    const options=q.options.map((opt,j)=>{
+      let cls="review-option", label="";
+      if(j===q.answer){cls+=" correct";label='<span class="review-label">Kunci jawaban</span>';}
+      if(chosen===j && chosen!==q.answer){cls+=" chosen-wrong";label='<span class="review-label">Jawaban Anda</span>';}
+      else if(chosen===j && chosen===q.answer){label='<span class="review-label">Jawaban Anda</span>';}
+      return `<div class="${cls}"><strong>${letters[j]}.</strong> ${opt} ${label}</div>`;
+    }).join("");
+    const chosenText=chosen===null ? "Belum dijawab" : `${letters[chosen]}. ${stripTags(q.options[chosen])}`;
+    return `<article class="review-card">
+      <div class="question-meta"><span class="q-number">SOAL ${i+1}</span><span class="section-badge">${q.section}</span><span class="q-position">${chosen===q.answer?"Benar":chosen===null?"Kosong":"Perlu ditinjau"}</span></div>
+      <h3>${q.q}</h3>
+      ${options}
+      <div class="explanation"><strong>Pembahasan:</strong> ${q.explanation}<br><span style="display:block;margin-top:6px"><strong>Jawaban Anda:</strong> ${chosenText}</span></div>
+    </article>`;
+  }).join("");
+}
+function stripTags(html){
+  const div=document.createElement("div");div.innerHTML=html;return div.textContent||div.innerText||"";
+}
+function downloadCSV(){
+  const rows=[["Nama peserta","Nomor soal","Bagian","Pertanyaan","Jawaban peserta","Kunci jawaban","Status","Pembahasan"]];
+  questions.forEach((q,i)=>{
+    rows.push([participant,i+1,q.section,stripTags(q.q),answers[i]===null?"Belum dijawab":letters[answers[i]]+". "+stripTags(q.options[answers[i]]),letters[q.answer]+". "+stripTags(q.options[q.answer]),answers[i]===null?"Belum dijawab":answers[i]===q.answer?"Benar":"Salah",stripTags(q.explanation)]);
+  });
+  const csv=rows.map(row=>row.map(cell=>`"${String(cell).replace(/"/g,'""')}"`).join(",")).join("\r\n");
+  const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8;"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download="hasil-simulasi-ukpppg-informatika.csv";
+  document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+$("startBtn").addEventListener("click",startTest);
+$("prevBtn").addEventListener("click",()=>{if(current>0){current--;renderQuestion();}});
+$("nextBtn").addEventListener("click",moveNext);
+$("flagBtn").addEventListener("click",()=>{if(flagged.has(current))flagged.delete(current);else flagged.add(current);renderQuestion();});
+$("submitBtn").addEventListener("click",openSubmitModal);
+$("cancelSubmitBtn").addEventListener("click",closeSubmitModal);
+$("confirmSubmitBtn").addEventListener("click",()=>finishTest(false,true));
+$("confirmModal").addEventListener("click",e=>{if(e.target===$("confirmModal"))closeSubmitModal();});
+$("reviewBtn").addEventListener("click",()=>{
+  const hidden=$("reviewWrap").classList.contains("hidden");
+  $("reviewWrap").classList.toggle("hidden");
+  $("reviewBtn").textContent=hidden?"Sembunyikan pembahasan":"Lihat pembahasan";
+  if(hidden){renderReview();$("reviewWrap").scrollIntoView({behavior:"smooth",block:"start"});}
+});
+document.querySelectorAll(".filter-btn").forEach(btn=>btn.addEventListener("click",()=>{
+  reviewFilter=btn.dataset.filter;
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b===btn));
+  renderReview();
+}));
+$("csvBtn").addEventListener("click",downloadCSV);
+$("printBtn").addEventListener("click",()=>window.print());
+$("restartBtn").addEventListener("click",()=>{
+  if(window.confirm("Mulai ulang simulasi? Hasil latihan yang sedang ditampilkan tidak akan disimpan di website.")){
+    clearInterval(timerInterval);
+    $("reviewWrap").classList.add("hidden");
+    showScreen("screenHome");
+  }
+});
+</script>
+</body>
+</html>
