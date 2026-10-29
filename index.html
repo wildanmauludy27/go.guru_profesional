@@ -60,7 +60,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .question-card{background:white;border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3.2vw,32px);box-shadow:var(--shadow)}
 .question-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:17px}
 .q-number{font-size:12px;font-weight:850;background:var(--navy);color:white;border-radius:8px;padding:6px 9px}
-.section-badge{font-size:11px;font-weight:850;letter-spacing:.6px;text-transform:uppercase;background:#e6f8f5;color:#08776f;border-radius:8px;padding:6px 9px}
+.section-badge{font-size:11px;font-weight:850;letter-spacing:.6px;text-transform:uppercase;background:#e6f8f5;color:#08776f;border-radius:8px;padding:6px 9px}.case-badge{background:#fff5db;color:#8a5b00}
 .q-position{font-size:12px;color:var(--muted);margin-left:auto}
 .question-text{font-size:clamp(17px,2vw,20px);font-weight:720;line-height:1.6;margin:0 0 22px}
 .question-text pre{white-space:pre-wrap;background:#10243a;color:#e5f5ff;padding:16px;border-radius:12px;overflow:auto;font-size:14px;font-weight:500}
@@ -132,7 +132,7 @@ footer{padding:22px;text-align:center;color:var(--muted);font-size:12px}
     <div class="hero">
       <span class="eyebrow">● Paket latihan mandiri</span>
       <h1>Simulasi Ujian Informatika</h1>
-      <p>Latihan 65 soal SJT dan PCK dengan pengalaman ujian berbasis web, timer, penilaian otomatis, dan pembahasan jawaban.</p>
+      <p>Latihan 65 soal orisinal SJT dan PCK bidang Informatika, termasuk soal studi kasus, dengan timer, penilaian otomatis, kunci jawaban, dan pembahasan.</p>
       <div class="stat-row">
         <div class="stat-pill"><strong>65</strong><span>Total soal</span></div>
         <div class="stat-pill"><strong>30</strong><span>Soal SJT</span></div>
@@ -174,7 +174,7 @@ footer{padding:22px;text-align:center;color:var(--muted);font-size:12px}
   <section id="screenExam" class="screen">
     <div class="exam-head">
       <div><div class="exam-heading">Lembar ujian</div><div id="examUser" class="exam-user">Peserta: Peserta</div></div>
-      <div id="timerBox" class="timer-box"><div><span class="timer-label">Sisa waktu</span><span id="timerValue" class="timer-value">90:00</span></div></div>
+      <div id="timerBox" class="timer-box"><div><span class="timer-label">Sisa waktu</span><span id="timerValue" class="timer-value">120:00</span></div></div>
     </div>
     <div class="progress-wrap"><div id="progressFill" class="progress-fill"></div></div>
     <div class="exam-layout">
@@ -261,7 +261,818 @@ footer{padding:22px;text-align:center;color:var(--muted);font-size:12px}
 <footer>Simulasi latihan mandiri UKPPPG Guru Tertentu 2026 • Bidang Studi Informatika</footer>
 
 <script>
-const questions = [{"section": "SJT", "q": "Seorang guru Informatika telah merencanakan pembelajaran algoritma menggunakan aplikasi pemrograman daring. Ketika pembelajaran dimulai, jaringan internet sekolah mengalami gangguan. Sebagian peserta didik tidak dapat membuka aplikasi, sedangkan tujuan pembelajaran hari itu adalah memahami urutan instruksi dan logika algoritma. Tindakan yang paling tepat dilakukan guru adalah ....", "options": ["Tetap menjelaskan materi melalui ceramah sampai jaringan kembali normal.", "Menghentikan pembelajaran dan meminta peserta didik mempelajari materi sendiri di rumah.", "Mengalihkan kegiatan menjadi simulasi algoritma tanpa komputer menggunakan kartu instruksi atau diagram alir, kemudian memberikan asesmen yang sesuai.", "Meminta peserta didik yang memiliki kuota internet untuk mengerjakan tugas, sedangkan peserta didik lainnya menunggu."], "answer": 2, "explanation": "Tujuan pembelajaran tetap dapat dicapai melalui aktivitas tanpa komputer ketika internet tidak tersedia."}, {"section": "SJT", "q": "Seorang peserta didik mengirimkan foto temannya yang memalukan ke grup kelas. Foto tersebut kemudian disebarkan oleh beberapa peserta didik lain. Korban terlihat tertekan dan tidak ingin mengikuti pelajaran Informatika. Apa tindakan guru yang paling tepat?", "options": ["Menegur seluruh kelas melalui grup dengan menyebut nama peserta didik yang terlibat.", "Melindungi korban, menghentikan penyebaran, mendokumentasikan kejadian seperlunya, dan menindaklanjuti sesuai prosedur perlindungan peserta didik di sekolah.", "Meminta korban mengabaikan kejadian tersebut karena terjadi di luar kegiatan pembelajaran.", "Menghukum seluruh peserta didik dengan memberikan tugas tambahan yang sama."], "answer": 1, "explanation": "Keselamatan dan perlindungan korban harus diutamakan, disertai penanganan sesuai prosedur sekolah."}, {"section": "SJT", "q": "Dalam satu kelas, beberapa peserta didik sudah mampu membuat program sederhana, sedangkan peserta didik lainnya masih kesulitan memahami variabel dan percabangan. Guru ingin semua peserta didik mencapai tujuan pembelajaran yang sama tanpa mengabaikan perbedaan kemampuan awal. Strategi yang paling tepat adalah ....", "options": ["Memberikan tugas yang sama dengan tingkat kesulitan tertinggi kepada seluruh peserta didik.", "Memisahkan peserta didik berdasarkan kemampuan dan tidak mengubah kelompok selama satu semester.", "Meminta peserta didik yang belum memahami materi untuk belajar sendiri tanpa pendampingan.", "Melakukan asesmen diagnostik, menyediakan contoh dan bantuan bertahap bagi yang membutuhkan, serta memberikan tantangan lanjutan bagi peserta didik yang sudah siap."], "answer": 3, "explanation": "Asesmen diagnostik dan bantuan bertahap memungkinkan pembelajaran sesuai kebutuhan tanpa menghilangkan tujuan bersama."}, {"section": "SJT", "q": "Saat membahas algoritma, seorang peserta didik memberikan jawaban yang salah. Peserta didik tersebut sebenarnya sudah mencoba menjelaskan alur berpikirnya, tetapi beberapa temannya mulai menertawakannya. Apa respons guru yang paling tepat?", "options": ["Mengapresiasi usaha peserta didik, menggali alasan di balik jawabannya, lalu membimbing kelas menemukan letak kesalahan konsep.", "Langsung memberikan jawaban yang benar agar pembelajaran tidak membuang waktu.", "Meminta peserta didik yang salah menjelaskan kembali jawabannya di depan kelas sampai benar.", "Mengabaikan jawaban tersebut dan beralih kepada peserta didik yang lebih mampu."], "answer": 0, "explanation": "Kesalahan menjadi sumber belajar jika guru menggali pemikiran peserta didik dan menjaga lingkungan yang aman."}, {"section": "SJT", "q": "Guru menerima dua tugas pemrograman yang memiliki struktur kode dan kesalahan yang hampir sama. Guru menduga salah satu peserta didik menyalin pekerjaan temannya, tetapi belum memiliki bukti yang cukup. Tindakan yang paling profesional adalah ....", "options": ["Mengumumkan dugaan tersebut di depan kelas agar peserta didik lain tidak meniru.", "Langsung memberikan nilai nol kepada kedua peserta didik.", "Memeriksa bukti yang tersedia, berbicara secara pribadi dengan peserta didik, meminta mereka menjelaskan proses pengerjaan, dan menindaklanjuti berdasarkan aturan akademik sekolah.", "Mengabaikan persoalan tersebut karena program yang dikumpulkan dapat dijalankan."], "answer": 2, "explanation": "Dugaan pelanggaran perlu diperiksa berdasarkan bukti, klarifikasi, dan aturan akademik, bukan prasangka."}, {"section": "SJT", "q": "Seorang orang tua menghubungi guru karena nilai proyek aplikasi anaknya lebih rendah daripada yang diharapkan. Orang tua merasa anaknya sudah bekerja keras dan meminta nilai dinaikkan. Apa yang sebaiknya dilakukan guru?", "options": ["Menaikkan nilai untuk menjaga hubungan baik dengan orang tua.", "Menjelaskan kriteria dan bukti penilaian secara objektif, mendengarkan keberatan orang tua, serta memeriksa kembali penilaian apabila terdapat alasan yang dapat dipertanggungjawabkan.", "Menolak berdiskusi karena nilai sepenuhnya merupakan kewenangan guru.", "Membandingkan nilai anak tersebut dengan nilai teman-temannya untuk menunjukkan bahwa penilaian sudah benar."], "answer": 1, "explanation": "Penilaian harus transparan, berbasis kriteria, terbuka terhadap klarifikasi, dan dapat ditinjau bila diperlukan."}, {"section": "SJT", "q": "Seorang peserta didik mengumpulkan laporan proyek Informatika dengan bahasa yang sangat berbeda dari biasanya. Guru menduga laporan tersebut dibuat menggunakan kecerdasan artifisial (AI), tetapi belum mengetahui proses pengerjaannya. Tindakan yang paling tepat adalah ....", "options": ["Meminta peserta didik menjelaskan isi dan proses penyusunan laporan, memeriksa bukti proses pengerjaan, serta menerapkan kebijakan penggunaan AI yang telah dijelaskan sebelumnya.", "Langsung memberikan nilai nol berdasarkan dugaan guru.", "Menyatakan bahwa semua penggunaan AI dalam pembelajaran pasti merupakan pelanggaran.", "Menggunakan hasil detektor AI sebagai satu-satunya dasar untuk menetapkan pelanggaran."], "answer": 0, "explanation": "Dugaan penggunaan AI tidak cukup untuk menetapkan pelanggaran. Proses pengerjaan dan kebijakan yang jelas perlu diperiksa."}, {"section": "SJT", "q": "Seorang peserta didik memiliki hambatan penglihatan sehingga kesulitan membaca kode program dengan ukuran huruf kecil. Guru ingin peserta didik tersebut tetap dapat mencapai tujuan pembelajaran yang sama. Langkah yang paling tepat adalah ....", "options": ["Membebaskan peserta didik dari seluruh kegiatan pemrograman.", "Meminta teman sebangku mengerjakan program atas nama peserta didik tersebut.", "Menyediakan materi yang dapat diakses, misalnya pembesaran huruf atau pembaca layar jika sesuai, serta mendiskusikan kebutuhan dan dukungan yang diperlukan bersama peserta didik.", "Tetap menggunakan materi yang sama tanpa penyesuaian agar semua peserta didik diperlakukan identik."], "answer": 2, "explanation": "Aksesibilitas dan akomodasi yang sesuai membantu peserta didik mencapai kompetensi yang ditargetkan."}, {"section": "SJT", "q": "Dalam pembelajaran keamanan digital, hanya beberapa peserta didik yang aktif menjawab pertanyaan. Sebagian besar lainnya diam, meskipun hasil pekerjaan tertulis menunjukkan bahwa mereka memahami sebagian materi. Strategi yang paling tepat adalah ....", "options": ["Memanggil peserta didik yang diam secara bergantian untuk menjawab pertanyaan sulit.", "Menambah jumlah tugas tertulis agar peserta didik lebih aktif.", "Menyimpulkan bahwa peserta didik yang diam belum mempelajari materi.", "Memberikan waktu berpikir individu, dilanjutkan diskusi berpasangan, kemudian menyediakan kesempatan berbagi jawaban secara lisan atau tertulis."], "answer": 3, "explanation": "Diskusi berpasangan dan beragam cara merespons dapat meningkatkan partisipasi tanpa mempermalukan peserta didik."}, {"section": "SJT", "q": "Setelah mengajarkan struktur percabangan, guru memberikan kuis. Sebagian besar peserta didik memperoleh nilai rendah. Guru menyadari bahwa beberapa soal meminta peserta didik menelusuri alur program yang lebih kompleks daripada contoh latihan sebelumnya. Apa tindakan yang paling tepat?", "options": ["Mengulang tes yang sama sampai nilai peserta didik meningkat.", "Menganalisis jawaban dan kesalahan peserta didik, mengidentifikasi miskonsepsi, lalu memperbaiki pembelajaran dan memberikan asesmen lanjutan.", "Mengurangi nilai ketuntasan agar sebagian besar peserta didik dinyatakan berhasil.", "Menyimpulkan bahwa materi percabangan terlalu sulit untuk diajarkan."], "answer": 1, "explanation": "Analisis hasil asesmen membantu menemukan miskonsepsi dan menentukan tindak lanjut pembelajaran."}, {"section": "SJT", "q": "Guru ingin mengajarkan pengolahan data menggunakan perangkat lunak yang hanya tersedia melalui lisensi berbayar. Sekolah belum memiliki lisensi dan belum mengalokasikan anggaran untuk membelinya. Keputusan yang paling tepat adalah ....", "options": ["Memilih perangkat lunak legal yang tersedia, seperti aplikasi sumber terbuka yang sesuai dengan tujuan pembelajaran.", "Menggunakan perangkat lunak bajakan karena hanya dipakai untuk pendidikan.", "Meminta peserta didik mencari salinan perangkat lunak tidak resmi di internet.", "Menghapus seluruh materi pengolahan data dari pembelajaran."], "answer": 0, "explanation": "Penggunaan perangkat lunak harus memperhatikan lisensi dan ketersediaan alternatif legal."}, {"section": "SJT", "q": "Guru ingin menggunakan layanan AI publik untuk menganalisis kesulitan belajar peserta didik. Guru berencana mengunggah nama lengkap, nomor induk, nilai, dan catatan perilaku setiap peserta didik. Tindakan yang paling tepat adalah ....", "options": ["Mengunggah semua data karena layanan tersebut dapat membantu guru.", "Mengganti nama dengan inisial, tetapi tetap mengunggah semua identitas dan catatan pribadi tanpa memeriksa kebijakan layanan.", "Mengunggah data nilai saja tanpa mempertimbangkan apakah data tersebut dapat dikaitkan kembali dengan identitas peserta didik.", "Tidak mengunggah data pribadi yang dapat mengidentifikasi peserta didik ke layanan yang belum disetujui; gunakan data minimum yang telah dianonimkan dan layanan yang sesuai dengan kebijakan perlindungan data."], "answer": 3, "explanation": "Data pribadi harus dilindungi. Penggunaan AI perlu mempertimbangkan persetujuan, kebijakan, keamanan, dan minimisasi data."}, {"section": "SJT", "q": "Dalam proyek pembuatan aplikasi sederhana, satu peserta didik mengerjakan hampir seluruh kode, sedangkan anggota lainnya hanya menuliskan nama dalam laporan. Apa yang sebaiknya dilakukan guru?", "options": ["Memberikan nilai kelompok yang sama tanpa memeriksa kontribusi masing-masing anggota.", "Menetapkan peran yang jelas, memantau kemajuan setiap anggota, memberikan kesempatan kolaborasi, dan menilai kontribusi individu sesuai kriteria yang transparan.", "Meminta peserta didik yang paling mampu menyelesaikan seluruh proyek agar hasil kelompok lebih baik.", "Membatalkan proyek kelompok dan memberikan nilai nol kepada semua anggota."], "answer": 1, "explanation": "Peran, pemantauan, dan akuntabilitas individu membantu memastikan pembelajaran kolaboratif berjalan adil."}, {"section": "SJT", "q": "Saat asesmen praktik pemrograman berlangsung, listrik sekolah padam. Sebagian peserta didik sudah menyelesaikan tugas, sedangkan sebagian lainnya kehilangan hasil pekerjaan yang belum tersimpan. Apa tindakan guru yang paling tepat?", "options": ["Menetapkan nilai berdasarkan pekerjaan yang berhasil disimpan tanpa mempertimbangkan gangguan teknis.", "Memberikan kesempatan ujian ulang hanya kepada peserta didik yang dianggap paling membutuhkan.", "Mendokumentasikan gangguan, berkoordinasi dengan pihak terkait, memeriksa bukti pekerjaan yang tersedia, dan menetapkan tindak lanjut yang adil bagi peserta didik terdampak.", "Menganggap peserta didik yang belum menyelesaikan tugas tidak menguasai materi."], "answer": 2, "explanation": "Gangguan teknis perlu didokumentasikan dan ditangani melalui prosedur yang menjaga keadilan asesmen."}, {"section": "SJT", "q": "Dalam diskusi guru, seorang rekan menyatakan bahwa semua situs yang menggunakan HTTPS pasti aman dan tidak mungkin melakukan penipuan. Guru Informatika mengetahui bahwa pernyataan tersebut tidak tepat. Apa tindakan yang paling profesional?", "options": ["Menjelaskan secara santun bahwa HTTPS melindungi komunikasi dan membantu autentikasi server, tetapi tidak menjamin bahwa pengelola situs dapat dipercaya.", "Membiarkan pernyataan tersebut karena disampaikan oleh rekan yang lebih senior.", "Menyatakan secara terbuka bahwa rekan tersebut tidak kompeten dalam bidang teknologi.", "Menghindari diskusi keamanan digital agar tidak terjadi perbedaan pendapat."], "answer": 0, "explanation": "HTTPS melindungi komunikasi, tetapi tidak membuktikan bahwa isi atau pemilik situs selalu dapat dipercaya."}, {"section": "SJT", "q": "Seorang peserta didik mencoba menebak kata sandi jaringan Wi-Fi sekolah dengan menggunakan program yang diperolehnya dari internet. Peserta didik beralasan bahwa ia sedang belajar keamanan siber. Respons guru yang paling tepat adalah ....", "options": ["Membiarkannya karena keterampilan tersebut penting bagi calon praktisi keamanan siber.", "Meminta peserta didik melanjutkan percobaan untuk membuktikan kemampuan teknisnya.", "Meminta peserta didik menguji jaringan sekolah lain sebagai pembanding.", "Menghentikan aktivitas tanpa izin, menjelaskan batas etika dan kewenangan, melaporkan kejadian sesuai prosedur, serta mengarahkan praktik keamanan siber ke lingkungan laboratorium yang diizinkan."], "answer": 3, "explanation": "Pengujian keamanan harus memiliki izin dan dilakukan dalam lingkungan yang sah serta terkendali."}, {"section": "SJT", "q": "Sekolah melakukan peninjauan kurikulum. Guru Informatika menemukan bahwa beberapa tujuan pembelajaran dan asesmen yang direncanakannya belum sepenuhnya sesuai dengan capaian pembelajaran yang digunakan sekolah. Apa langkah yang paling tepat?", "options": ["Mempertahankan semua perangkat ajar karena sudah digunakan pada tahun sebelumnya.", "Menelaah capaian pembelajaran, menyesuaikan tujuan dan alur pembelajaran, lalu menyelaraskan aktivitas serta asesmen dengan kompetensi yang ditargetkan.", "Mengganti semua materi dengan aplikasi yang sedang populer tanpa meninjau capaian pembelajaran.", "Mengikuti urutan buku teks secara mutlak tanpa mempertimbangkan kebutuhan peserta didik."], "answer": 1, "explanation": "Perangkat ajar perlu diselaraskan dengan capaian pembelajaran, aktivitas, dan asesmen yang relevan."}, {"section": "SJT", "q": "Guru memberikan proyek pembuatan presentasi digital yang harus dikerjakan di rumah. Setelah beberapa hari, guru mengetahui bahwa sebagian peserta didik tidak memiliki komputer atau akses internet yang memadai. Tindakan yang paling tepat adalah ....", "options": ["Menyediakan alternatif pengerjaan luring, akses perangkat di sekolah atau laboratorium, maupun format tugas yang dapat diakses dengan fasilitas terbatas tanpa mengubah tujuan kompetensi utama.", "Memberikan nilai lebih rendah kepada peserta didik yang tidak memiliki perangkat.", "Menganggap keterbatasan perangkat sebagai tanggung jawab keluarga sepenuhnya.", "Mengharuskan semua peserta didik membeli perangkat yang sama."], "answer": 0, "explanation": "Alternatif akses dan pengerjaan menjaga kesempatan belajar tanpa menurunkan kompetensi yang ditargetkan."}, {"section": "SJT", "q": "Seorang peserta didik menyerahkan laporan tentang jaringan komputer yang sebagian besar disalin dari sebuah situs tanpa mencantumkan sumber. Guru ingin memperbaiki perilaku akademik sekaligus memastikan peserta didik memahami materi. Apa tindakan yang paling tepat?", "options": ["Langsung memberikan nilai tertinggi karena informasi yang disajikan terlihat lengkap.", "Mengabaikan persoalan karena tugas tersebut bukan karya ilmiah tingkat perguruan tinggi.", "Menjelaskan prinsip atribusi sumber, meminta peserta didik memperbaiki laporan dengan pemahaman dan bahasa sendiri, serta menerapkan ketentuan penilaian secara konsisten.", "Mengumumkan nama peserta didik sebagai pelaku plagiarisme di depan sekolah."], "answer": 2, "explanation": "Pendidikan integritas akademik perlu disertai pembimbingan, perbaikan karya, dan penerapan aturan yang konsisten."}, {"section": "SJT", "q": "Seorang orang tua meminta guru mengumumkan nilai anaknya melalui grup WhatsApp kelas agar orang tua lain mengetahui perkembangan akademik anak tersebut. Apa respons guru yang paling tepat?", "options": ["Mengirimkan nilai lengkap karena orang tua meminta secara langsung.", "Mengirimkan nilai semua peserta didik agar perlakuannya sama.", "Mengirimkan nilai dengan nomor induk sebagai pengganti nama tanpa menilai risiko identifikasi.", "Menyampaikan informasi perkembangan belajar anak melalui saluran komunikasi pribadi yang sesuai dengan kebijakan sekolah dan menjaga kerahasiaan data peserta didik lain."], "answer": 3, "explanation": "Informasi nilai merupakan data pribadi yang perlu disampaikan melalui saluran komunikasi yang tepat."}, {"section": "SJT", "q": "Setelah melakukan observasi pembelajaran Informatika, guru pamong menyampaikan bahwa guru terlalu banyak menjelaskan dan kurang memberi kesempatan peserta didik menelusuri algoritma sendiri. Guru merasa telah mempersiapkan pembelajaran dengan baik. Respons yang paling tepat adalah ....", "options": ["Menolak masukan karena rencana pembelajaran sudah sesuai dengan perangkat ajar.", "Meminta contoh yang lebih spesifik, merefleksikan bukti pembelajaran, dan mencoba memperbaiki proporsi aktivitas peserta didik pada pertemuan berikutnya.", "Mengganti seluruh strategi pembelajaran tanpa menganalisis masukan yang diberikan.", "Menghindari observasi selanjutnya agar tidak menerima kritik serupa."], "answer": 1, "explanation": "Refleksi berbasis masukan konkret membantu guru meningkatkan praktik pembelajaran."}, {"section": "SJT", "q": "Dua peserta didik berselisih karena berbeda pendapat tentang desain aplikasi. Salah satu peserta didik mendominasi keputusan, sementara anggota lainnya berhenti berkontribusi. Tindakan guru yang paling tepat adalah ....", "options": ["Memfasilitasi dialog, meminta setiap anggota menjelaskan alasan berdasarkan kebutuhan pengguna dan kriteria proyek, lalu menyepakati pembagian tugas yang adil.", "Membiarkan konflik karena peserta didik harus menyelesaikan semua persoalan sendiri.", "Memilih desain peserta didik yang paling cepat menyelesaikan kode.", "Membatalkan proyek kedua peserta didik tanpa mendengarkan penjelasan."], "answer": 0, "explanation": "Fasilitasi dialog dan pembagian peran mendorong penyelesaian konflik secara adil dan produktif."}, {"section": "SJT", "q": "Peserta didik dapat menjelaskan bahwa perulangan digunakan untuk menjalankan instruksi berulang kali, tetapi sering keliru menentukan berapa kali sebuah program dijalankan. Guru ingin memperbaiki pemahaman konsep tersebut. Strategi yang paling tepat adalah ....", "options": ["Meminta peserta didik menghafalkan sintaks perulangan.", "Memberikan program yang lebih panjang agar peserta didik terbiasa.", "Menggunakan contoh sederhana, tabel penelusuran nilai variabel, dan prediksi keluaran sebelum program dijalankan.", "Menghindari materi perulangan dan langsung mengajarkan fungsi."], "answer": 2, "explanation": "Tabel penelusuran dan contoh konkret membantu peserta didik memahami jumlah iterasi serta perubahan variabel."}, {"section": "SJT", "q": "Peserta didik membuat proyek analisis data kehadiran siswa. Dataset yang tersedia memuat nama lengkap, nomor induk, dan catatan alasan ketidakhadiran yang bersifat pribadi. Apa tindakan yang paling tepat?", "options": ["Menggunakan seluruh data karena proyek dilakukan untuk kepentingan pendidikan.", "Membatasi data sesuai kebutuhan analisis, menghilangkan identitas yang tidak diperlukan, dan memastikan penggunaan data mengikuti izin serta kebijakan yang berlaku.", "Mengunggah data ke media sosial agar peserta didik lain dapat memberikan masukan.", "Meminta peserta didik menghafalkan data tersebut sebagai latihan pengolahan informasi."], "answer": 1, "explanation": "Pengolahan data harus mengikuti prinsip pembatasan tujuan, minimisasi data, dan perlindungan identitas."}, {"section": "SJT", "q": "Dalam proyek klasifikasi sederhana, peserta didik menemukan bahwa model lebih sering memberikan hasil yang merugikan kelompok tertentu. Guru ingin menjadikan temuan ini sebagai pengalaman belajar. Tindakan yang paling tepat adalah ....", "options": ["Menyatakan model benar karena komputer tidak memiliki emosi.", "Menghapus semua data kelompok yang hasilnya kurang baik agar akurasi meningkat.", "Mengabaikan hasil tersebut karena bias tidak berkaitan dengan Informatika.", "Memeriksa representasi data, cara pelabelan, dan hasil model pada kelompok berbeda, kemudian membahas bias, keterbatasan model, dan kemungkinan perbaikannya."], "answer": 3, "explanation": "Evaluasi bias memerlukan pemeriksaan data dan keluaran model, bukan sekadar menerima hasil sistem."}, {"section": "SJT", "q": "Guru harus melaksanakan pembelajaran Informatika secara daring. Sebagian peserta didik hanya memiliki koneksi internet yang tidak stabil dan kesulitan mengikuti konferensi video dalam waktu lama. Pilihan yang paling tepat adalah ....", "options": ["Menyediakan materi berukuran kecil, instruksi tertulis, aktivitas asinkron, serta alternatif pengumpulan tugas yang tetap mengukur tujuan pembelajaran.", "Mewajibkan seluruh peserta didik mengikuti konferensi video tanpa pengecualian.", "Mengurangi nilai semua peserta didik yang tidak dapat mengikuti video secara langsung.", "Menunda seluruh pembelajaran sampai semua peserta didik memiliki koneksi yang sama."], "answer": 0, "explanation": "Materi asinkron dan berukuran kecil membantu akses pembelajaran dalam keterbatasan jaringan."}, {"section": "SJT", "q": "Seorang peserta didik melaporkan bahwa akun belajarnya digunakan orang lain. Peserta didik tersebut masih dapat mengakses sebagian layanan, tetapi menemukan aktivitas yang tidak dikenalnya. Apa saran guru yang paling tepat?", "options": ["Meminta peserta didik membalas dengan mencoba masuk ke akun orang yang diduga meretas.", "Meminta peserta didik mengirimkan kata sandinya kepada guru melalui grup kelas.", "Membantu peserta didik mengamankan akun melalui prosedur pemulihan resmi, mengganti kata sandi dari perangkat tepercaya, mengaktifkan autentikasi multifaktor jika tersedia, dan melaporkan kejadian kepada pengelola layanan.", "Mengabaikan laporan karena insiden akun bukan bagian dari pembelajaran Informatika."], "answer": 2, "explanation": "Pemulihan akun melalui prosedur resmi, pengamanan kredensial, dan pelaporan merupakan langkah penanganan yang tepat."}, {"section": "SJT", "q": "Saat mendemonstrasikan program di depan kelas, guru menemukan bahwa kode yang telah disiapkan menghasilkan keluaran yang salah. Peserta didik menunggu penjelasan. Apa tindakan yang paling tepat?", "options": ["Mengganti topik tanpa menjelaskan kesalahan.", "Menunjukkan proses debugging secara sistematis, memeriksa asumsi dan nilai variabel, kemudian menjelaskan bagaimana kesalahan ditemukan dan diperbaiki.", "Menyalahkan perangkat komputer karena program tidak berjalan sesuai harapan.", "Menyembunyikan kesalahan dan langsung menampilkan hasil akhir."], "answer": 1, "explanation": "Debugging secara terbuka menunjukkan proses pemecahan masalah yang sistematis dan dapat diteladani peserta didik."}, {"section": "SJT", "q": "Pada akhir pertemuan, guru menyadari bahwa sebagian besar waktu digunakan untuk menjelaskan materi. Peserta didik belum cukup berlatih dan guru belum memiliki bukti yang memadai tentang penguasaan tujuan pembelajaran. Tindakan yang paling tepat adalah ....", "options": ["Memaksakan semua materi selesai meskipun peserta didik belum memahami konsep utama.", "Memberikan banyak pekerjaan rumah tanpa mengetahui kesulitan peserta didik.", "Menganggap pembelajaran berhasil karena seluruh materi telah dijelaskan.", "Memeriksa pemahaman melalui asesmen singkat, memprioritaskan kompetensi yang belum dikuasai, dan merencanakan tindak lanjut berdasarkan hasilnya."], "answer": 3, "explanation": "Asesmen singkat membantu guru menentukan kompetensi yang perlu diprioritaskan dan diperbaiki."}, {"section": "SJT", "q": "Seorang peserta didik mengalami masalah keluarga yang memengaruhi konsentrasinya. Ia meminta guru menaikkan nilai proyek Informatika agar tidak mendapat hasil belajar yang buruk. Hasil pekerjaannya belum memenuhi beberapa kriteria penilaian. Respons guru yang paling tepat adalah ....", "options": ["Menunjukkan empati, menjelaskan kriteria secara transparan, dan menawarkan dukungan atau kesempatan perbaikan yang sesuai dengan kebijakan penilaian sekolah.", "Langsung menaikkan nilai tanpa memeriksa kompetensi yang telah dicapai.", "Menolak berbicara dengan peserta didik karena masalah keluarga tidak relevan dengan pembelajaran.", "Menyampaikan masalah keluarga tersebut kepada seluruh kelas agar teman-temannya memahami kondisinya."], "answer": 0, "explanation": "Empati perlu berjalan bersama transparansi penilaian, dukungan belajar, dan konsistensi kriteria."}, {"section": "PCK", "q": "Guru meminta peserta didik merancang sistem peminjaman buku perpustakaan. Peserta didik memasukkan banyak detail, seperti warna sampul, jenis huruf pada sampul, dan bentuk rak, padahal detail tersebut tidak diperlukan untuk menghitung peminjaman dan pengembalian. Strategi yang paling tepat untuk mengajarkan abstraksi adalah ....", "options": ["Meminta peserta didik memasukkan semua informasi yang dapat ditemukan tentang buku.", "Membimbing peserta didik memilih informasi yang relevan dengan tujuan sistem, seperti identitas buku, identitas peminjam, tanggal peminjaman, dan tanggal pengembalian.", "Meminta peserta didik menghapus seluruh informasi buku kecuali judulnya.", "Mengajarkan sintaks pemrograman terlebih dahulu tanpa membahas kebutuhan sistem."], "answer": 1, "explanation": "Abstraksi berfokus pada informasi yang relevan dengan tujuan pemecahan masalah dan mengabaikan detail yang tidak diperlukan."}, {"section": "PCK", "q": "Peserta didik diminta merancang aplikasi sederhana untuk inventaris laboratorium komputer. Mereka kesulitan karena mencoba merancang seluruh aplikasi sekaligus. Pendekatan yang paling tepat untuk mengajarkan dekomposisi adalah ....", "options": ["Meminta peserta didik langsung menulis seluruh kode dalam satu program panjang.", "Mengurangi kebutuhan aplikasi agar peserta didik tidak perlu merancang sistem.", "Memberikan kode lengkap dan meminta peserta didik menyalinnya.", "Membimbing peserta didik membagi masalah menjadi bagian yang lebih kecil, misalnya pencatatan perangkat, pencatatan kondisi, peminjaman, dan pengembalian."], "answer": 3, "explanation": "Dekomposisi membagi masalah kompleks menjadi bagian-bagian yang lebih kecil dan lebih mudah ditangani."}, {"section": "PCK", "q": "Seorang peserta didik menuliskan kode berikut, tetapi berpendapat bahwa program tersebut menampilkan angka 1 sampai 5:<pre><code>for i in range(5):\n    print(i)</code></pre>Strategi pembelajaran yang paling tepat adalah ....", "options": ["Menjalankan program, meminta peserta didik memprediksi hasilnya, lalu menelusuri perubahan nilai <code>i</code> untuk menjelaskan bahwa <code>range(5)</code> menghasilkan 0 sampai 4.", "Meminta peserta didik menghafalkan bahwa semua perulangan dimulai dari angka 1.", "Mengganti seluruh materi perulangan dengan materi variabel.", "Memberikan jawaban benar tanpa meminta peserta didik menjelaskan pemikirannya."], "answer": 0, "explanation": "<code>range(5)</code> menghasilkan urutan 0, 1, 2, 3, 4. Penelusuran langsung membantu memperbaiki miskonsepsi."}, {"section": "PCK", "q": "Peserta didik mampu menyalin algoritma dari contoh, tetapi kesulitan menentukan keluaran ketika nilai masukan berubah. Guru ingin mengetahui apakah peserta didik memahami alur algoritma, bukan sekadar menghafal kode. Teknik asesmen yang paling tepat adalah ....", "options": ["Meminta peserta didik menghafalkan seluruh sintaks program.", "Menilai kecepatan peserta didik mengetik kode.", "Meminta peserta didik menelusuri algoritma menggunakan masukan baru, mencatat perubahan variabel, dan menjelaskan keluaran pada setiap tahap.", "Menilai tampilan dokumen laporan tanpa memeriksa logika algoritma."], "answer": 2, "explanation": "Penelusuran langkah demi langkah memperlihatkan apakah peserta didik memahami perubahan variabel dan alur algoritma."}, {"section": "PCK", "q": "Perhatikan pseudocode berikut. Dengan asumsi batas 1 sampai 4 bersifat inklusif, keluaran yang benar adalah ....<pre><code>total <- 0\nUNTUK i DARI 1 SAMPAI 4:\n    total <- total + i\nCETAK total</code></pre>", "options": ["10", "6", "4", "11"], "answer": 0, "explanation": "Totalnya adalah 1 + 2 + 3 + 4 = 10."}, {"section": "PCK", "q": "Perhatikan program Python berikut:<pre><code>x = 7\n\nif x > 5:\n    print(\"A\")\nelse:\n    print(\"B\")</code></pre>Keluaran program tersebut adalah ....", "options": ["<code>B</code>", "<code>7</code>", "Tidak ada keluaran.", "<code>A</code>"], "answer": 3, "explanation": "Karena 7 lebih besar daripada 5, kondisi bernilai benar dan program mencetak A."}, {"section": "PCK", "q": "Perhatikan kode berikut:<pre><code>for i in range(1, 5):\n    print(i)</code></pre>Urutan angka yang dicetak adalah ....", "options": ["1, 2, 3, 4, 5", "1, 2, 3, 4", "0, 1, 2, 3, 4", "1, 2, 3, 5"], "answer": 1, "explanation": "Batas awal <code>range()</code> termasuk, sedangkan batas akhirnya tidak termasuk."}, {"section": "PCK", "q": "Perhatikan kode berikut:<pre><code>nilai = [72, 85, 90]\nprint(nilai[1])</code></pre>Apa keluaran program tersebut?", "options": ["72", "90", "85", "Terjadi kesalahan indeks."], "answer": 2, "explanation": "Indeks list Python dimulai dari 0, sehingga <code>nilai[1]</code> adalah elemen kedua, yaitu 85."}, {"section": "PCK", "q": "Perhatikan program berikut:<pre><code>data = [1, 2]\ndata.append([3, 4])\nprint(len(data))</code></pre>Berapakah keluaran program tersebut?", "options": ["3", "4", "2", "5"], "answer": 0, "explanation": "<code>append([3, 4])</code> menambahkan satu elemen berupa list ke dalam list awal. Panjang akhirnya adalah 3."}, {"section": "PCK", "q": "Seorang guru ingin mengajarkan fungsi yang menghitung luas persegi panjang. Hasil perhitungan tersebut akan digunakan kembali oleh bagian program lainnya. Pernyataan yang paling tepat adalah ....", "options": ["Fungsi harus selalu menggunakan <code>print()</code> dan tidak boleh menggunakan <code>return</code>.", "<code>return</code> hanya berfungsi untuk menampilkan teks ke layar.", "<code>print()</code> dan <code>return</code> selalu memiliki fungsi yang sama.", "<code>return</code> mengembalikan nilai kepada pemanggil fungsi sehingga hasilnya dapat disimpan atau digunakan kembali."], "answer": 3, "explanation": "<code>return</code> mengembalikan nilai kepada pemanggil fungsi, sedangkan <code>print()</code> digunakan untuk menampilkan keluaran."}, {"section": "PCK", "q": "Perhatikan ekspresi Python berikut:<pre><code>not (True and False) or False</code></pre>Hasil evaluasi ekspresi tersebut adalah ....", "options": ["<code>False</code>", "<code>True</code>", "Tidak memiliki nilai logika.", "Terjadi kesalahan sintaks."], "answer": 1, "explanation": "<code>True and False</code> bernilai False; negasinya True, kemudian <code>True or False</code> menghasilkan True."}, {"section": "PCK", "q": "Dalam pembelajaran sistem bilangan, peserta didik diminta mengonversi bilangan biner <code>10110</code> ke bilangan desimal. Hasil yang benar adalah ....", "options": ["18", "20", "22", "24"], "answer": 2, "explanation": "Nilai biner 10110 adalah 16 + 4 + 2 = 22 dalam desimal."}, {"section": "PCK", "q": "Guru meminta peserta didik merancang tabel data anggota perpustakaan. Setiap anggota harus dapat dibedakan secara unik meskipun beberapa anggota memiliki nama yang sama. Konsep yang paling tepat digunakan adalah ....", "options": ["<em>Primary key</em> yang mengidentifikasi setiap rekaman secara unik dan tidak boleh bernilai kosong.", "Kolom nama yang boleh berulang tanpa identitas pembeda.", "Kolom deskripsi yang berisi keterangan bebas.", "<em>Foreign key</em> yang selalu harus menjadi identitas utama tabel."], "answer": 0, "explanation": "Primary key mengidentifikasi setiap rekaman secara unik dan tidak boleh bernilai kosong."}, {"section": "PCK", "q": "Sebuah tabel bernama <code>siswa</code> memiliki kolom <code>nama</code> dan <code>nilai</code>. Guru ingin menampilkan nama peserta didik yang memperoleh nilai minimal 80. Perintah SQL yang tepat adalah ....", "options": ["<code>SELECT nama FROM siswa;</code>", "<code>SELECT * WHERE nilai &gt;= 80;</code>", "<code>SELECT nama FROM siswa WHERE nilai &lt; 80;</code>", "<code>SELECT nama FROM siswa WHERE nilai &gt;= 80;</code>"], "answer": 3, "explanation": "Klausa <code>WHERE nilai &gt;= 80</code> menyaring peserta didik dengan nilai minimal 80."}, {"section": "PCK", "q": "Peserta didik memiliki data nilai numerik pada sel B2 sampai B10. Guru meminta mereka menghitung nilai rata-rata dari rentang tersebut menggunakan spreadsheet. Rumus yang tepat adalah ....", "options": ["<code>=SUM(B2:B10)</code>", "<code>=AVERAGE(B2:B10)</code>", "<code>=COUNT(B2:B10)</code>", "<code>=MAX(B2:B10)</code>"], "answer": 1, "explanation": "Fungsi <code>AVERAGE</code> menghitung rata-rata nilai numerik dalam rentang yang ditentukan."}, {"section": "PCK", "q": "Peserta didik mengumpulkan data jumlah pengguna laboratorium komputer setiap bulan selama satu tahun. Guru ingin membantu mereka melihat perubahan dan kecenderungan jumlah pengguna dari waktu ke waktu. Visualisasi yang paling sesuai adalah ....", "options": ["Diagram lingkaran untuk setiap nilai bulanan tanpa memperhatikan urutan waktu.", "Histogram untuk mengelompokkan jumlah pengguna berdasarkan interval nilai.", "Diagram garis dengan bulan sebagai sumbu waktu dan jumlah pengguna sebagai nilai yang diamati.", "Diagram pencar tanpa mempertimbangkan urutan waktu."], "answer": 2, "explanation": "Diagram garis sesuai untuk menunjukkan perubahan dan kecenderungan data sepanjang waktu."}, {"section": "PCK", "q": "Dalam dataset waktu penyelesaian tugas pemrograman, sebagian besar peserta didik menyelesaikan tugas dalam waktu 30 sampai 60 menit. Namun, satu peserta didik memerlukan waktu 300 menit karena mengalami gangguan perangkat. Pernyataan yang paling tepat adalah ....", "options": ["Median relatif tidak terpengaruh oleh satu nilai ekstrem dibandingkan dengan rata-rata aritmetika.", "Rata-rata selalu lebih tahan terhadap pencilan daripada median.", "Modus selalu merupakan ukuran pemusatan yang paling tepat untuk semua jenis data.", "Pencilan tidak pernah memengaruhi ukuran pemusatan."], "answer": 0, "explanation": "Median lebih tahan terhadap pengaruh nilai ekstrem dibandingkan rata-rata aritmetika."}, {"section": "PCK", "q": "Guru ingin mengetahui kebiasaan penggunaan internet seluruh peserta didik di sekolah. Guru hanya menyebarkan survei melalui akun media sosial sekolah dan memperoleh jawaban dari peserta didik yang aktif menggunakan platform tersebut. Apa kelemahan utama metode tersebut?", "options": ["Data pasti tidak dapat diolah menggunakan komputer.", "Data tidak dapat disajikan dalam bentuk tabel.", "Survei daring selalu menghasilkan sampel yang representatif.", "Sampel berpotensi bias karena peserta didik yang tidak aktif menggunakan platform tersebut mungkin tidak terwakili."], "answer": 3, "explanation": "Sampel yang hanya berasal dari pengguna aktif platform berpotensi tidak mewakili seluruh populasi."}, {"section": "PCK", "q": "Guru ingin mengajarkan <em>binary search</em> kepada peserta didik menggunakan daftar nomor inventaris komputer. Kondisi yang diperlukan agar pencarian biner dapat diterapkan secara benar adalah ....", "options": ["Data harus diacak sebelum pencarian.", "Data harus tersusun menurut urutan yang digunakan dalam pencarian.", "Data harus berjumlah tepat dua elemen.", "Data harus berupa teks dan tidak boleh berupa angka."], "answer": 1, "explanation": "Binary search mengandalkan data yang telah terurut agar ruang pencarian dapat dipersempit dengan benar."}, {"section": "PCK", "q": "Diberikan daftar <code>[5, 2, 4, 1]</code>. Algoritma Bubble Sort mengurutkan data secara menaik dengan membandingkan elemen yang bersebelahan dari kiri ke kanan dan menukar posisinya apabila urutannya salah. Setelah satu lintasan penuh dari kiri ke kanan, hasil daftar adalah ....", "options": ["<code>[1, 2, 4, 5]</code>", "<code>[2, 5, 4, 1]</code>", "<code>[2, 4, 1, 5]</code>", "<code>[5, 2, 4, 1]</code>"], "answer": 2, "explanation": "Setelah satu lintasan, daftar berubah menjadi <code>[2, 4, 1, 5]</code>; nilai terbesar berpindah ke posisi terakhir."}, {"section": "PCK", "q": "Seorang peserta didik ingin mencetak angka 1 sampai 5 menggunakan Python, tetapi hanya memperoleh angka 1 sampai 4. Potongan kode yang tepat untuk memperbaiki masalah tersebut adalah ....", "options": ["<code>for i in range(1, 6):</code>", "<code>for i in range(1, 5):</code>", "<code>for i in range(0, 5):</code>", "<code>for i in range(5):</code>"], "answer": 0, "explanation": "<code>range(1, 6)</code> menghasilkan 1, 2, 3, 4, 5 karena batas akhirnya tidak termasuk."}, {"section": "PCK", "q": "Peserta didik membuat halaman web sederhana. Guru ingin memastikan mereka memahami perbedaan fungsi HTML dan CSS. Pernyataan yang tepat adalah ....", "options": ["HTML hanya mengatur warna, sedangkan CSS mengatur struktur dokumen.", "HTML dan CSS merupakan dua bahasa pemrograman yang memiliki fungsi identik.", "CSS digunakan untuk menyimpan seluruh data pengguna, sedangkan HTML untuk menjalankan basis data.", "HTML digunakan untuk menyusun struktur dan konten halaman, sedangkan CSS mengatur presentasi dan tampilannya."], "answer": 3, "explanation": "HTML menyusun struktur dan konten, sedangkan CSS mengatur presentasi visual halaman."}, {"section": "PCK", "q": "Peserta didik membuat halaman web yang memiliki bagian khusus berisi tautan navigasi utama. Guru ingin mereka menggunakan elemen HTML yang memiliki makna semantik sesuai fungsinya. Elemen yang paling tepat adalah ....", "options": ["<code>&lt;b&gt;</code>", "<code>&lt;nav&gt;</code>", "<code>&lt;span&gt;</code>", "<code>&lt;i&gt;</code>"], "answer": 1, "explanation": "Elemen <code>&lt;nav&gt;</code> secara semantik digunakan untuk bagian navigasi."}, {"section": "PCK", "q": "Guru memperlihatkan aplikasi sederhana dengan tombol. Ketika tombol diklik, aplikasi menampilkan pesan tertentu. Guru menjelaskan bahwa program dapat merespons tindakan pengguna. Konsep yang paling sesuai adalah ....", "options": ["Pemrograman yang hanya menjalankan instruksi secara berurutan tanpa interaksi.", "Penyimpanan data dalam tabel relasional.", "Pemrograman berbasis peristiwa (<em>event-driven programming</em>).", "Pemrosesan yang hanya menggunakan perulangan."], "answer": 2, "explanation": "Event-driven programming menjalankan respons berdasarkan peristiwa, seperti klik tombol."}, {"section": "PCK", "q": "Peserta didik sedang mempelajari jaringan komputer. Guru meminta mereka membedakan fungsi <em>switch</em> dan <em>router</em>. Pernyataan yang paling tepat adalah ....", "options": ["Switch meneruskan data antarperangkat dalam jaringan lokal berdasarkan informasi alamat MAC, sedangkan router meneruskan paket ant jaringan berdasarkan informasi alamat IP.", "Switch selalu menghubungkan jaringan yang berbeda, sedangkan router hanya menghubungkan perangkat dalam satu segmen LAN.", "Switch dan router selalu memiliki fungsi yang identik.", "Router hanya berfungsi menyimpan berkas, sedangkan switch berfungsi menjalankan aplikasi."], "answer": 0, "explanation": "Switch umumnya meneruskan data dalam LAN menggunakan informasi MAC, sedangkan router meneruskan paket ant jaringan menggunakan informasi IP."}, {"section": "PCK", "q": "Seorang peserta didik berpendapat bahwa semua situs HTTPS pasti aman untuk melakukan transaksi karena tidak mungkin digunakan untuk penipuan. Penjelasan guru yang paling tepat adalah ....", "options": ["HTTPS menjamin semua informasi di situs benar dan semua transaksi pasti aman.", "HTTPS secara otomatis menghapus seluruh malware dari perangkat pengguna.", "HTTPS tidak memberikan perlindungan terhadap komunikasi data.", "HTTPS melindungi komunikasi melalui TLS dan membantu mengautentikasi server, tetapi tidak menjamin bahwa pemilik situs selalu dapat dipercaya atau bebas dari penipuan."], "answer": 3, "explanation": "HTTPS membantu melindungi komunikasi, tetapi tidak menjamin bahwa situs bebas dari penipuan."}, {"section": "PCK", "q": "Seorang peserta didik menerima email yang mengaku berasal dari layanan sekolah. Email tersebut meminta kata sandi dan mengarahkan penerima ke tautan dengan alamat yang tidak dikenal. Tindakan yang paling tepat adalah ....", "options": ["Membuka tautan tersebut untuk mengetahui apakah tampilannya menyerupai situs resmi.", "Tidak membuka tautan atau memberikan kata sandi, memeriksa alamat pengirim dan tujuan tautan secara independen, serta melaporkan pesan tersebut melalui saluran yang sesuai.", "Membalas email dengan mengirimkan informasi akun agar pengirim dapat memverifikasi identitas.", "Meneruskan email ke seluruh kelas tanpa penjelasan."], "answer": 1, "explanation": "Memeriksa pengirim dan tujuan tautan secara independen serta tidak membagikan kredensial mengurangi risiko phishing."}, {"section": "PCK", "q": "Dalam materi keamanan sistem informasi, guru menjelaskan bahwa aplikasi perlu menyimpan informasi autentikasi pengguna secara aman. Pendekatan yang paling tepat untuk menyimpan kata sandi adalah ....", "options": ["Menyimpan kata sandi dalam teks biasa agar mudah dibaca administrator.", "Mengenkripsi kata sandi menggunakan metode yang dapat dibalik sebagai satu-satunya perlindungan.", "Menggunakan fungsi hashing khusus kata sandi yang sesuai, dengan salt unik dan pengaturan kerja yang memadai.", "Menggunakan kata sandi yang sama untuk seluruh akun agar pengelolaan lebih mudah."], "answer": 2, "explanation": "Kata sandi sebaiknya disimpan menggunakan fungsi hashing khusus kata sandi dengan salt unik dan parameter yang sesuai."}, {"section": "PCK", "q": "Peserta didik menggunakan aplikasi web untuk mencari informasi dari basis data sekolah. Mereka diminta menjelaskan hubungan antara perangkat pengguna dan server. Penjelasan yang paling tepat adalah ....", "options": ["Client mengirimkan permintaan, sedangkan server memproses permintaan tersebut dan memberikan respons sesuai layanan yang tersedia.", "Server selalu berupa komputer yang tidak terhubung ke jaringan.", "Client tidak pernah mengirimkan permintaan kepada server.", "Arsitektur client-server tidak membutuhkan pertukaran data."], "answer": 0, "explanation": "Client mengirim permintaan dan server memberikan respons sesuai layanan yang diminta."}, {"section": "PCK", "q": "Dalam proyek pemrograman kelompok, beberapa peserta didik mengubah berkas kode yang sama. Guru ingin mereka dapat melacak perubahan dan bekerja secara kolaboratif. Manfaat utama Git dalam konteks tersebut adalah ....", "options": ["Mengenkripsi seluruh kode secara otomatis.", "Menggantikan kebutuhan pengujian perangkat lunak.", "Menjamin tidak akan pernah terjadi konflik penggabungan kode.", "Mencatat riwayat perubahan, mendukung pembuatan commit dan branch, serta membantu kolaborasi dan peninjauan perubahan kode."], "answer": 3, "explanation": "Git membantu pencatatan perubahan, pengelolaan versi, percabangan, dan kolaborasi kode."}, {"section": "PCK", "q": "Peserta didik membuat proyek Internet of Things (IoT) menggunakan sensor suhu. Data yang dikumpulkan menunjukkan perubahan yang sangat tajam pada waktu tertentu, termasuk beberapa nilai yang tidak masuk akal. Langkah analisis yang paling tepat adalah ....", "options": ["Langsung menghapus semua nilai yang berbeda dari rata-rata.", "Memeriksa kalibrasi sensor, cap waktu, kelengkapan data, kondisi pengukuran, dan kemungkinan pencilan sebelum menarik kesimpulan.", "Menganggap semua nilai sensor benar karena dihasilkan secara otomatis.", "Mengubah semua data menjadi nilai yang sama agar grafik terlihat rapi."], "answer": 1, "explanation": "Validasi kualitas data dan kondisi sensor perlu dilakukan sebelum menghapus pencilan atau menarik kesimpulan."}, {"section": "PCK", "q": "Guru memberikan dua contoh penggunaan model pembelajaran mesin: (1) memprediksi apakah sebuah email termasuk spam atau bukan; (2) memperkirakan suhu udara esok hari dalam derajat Celsius. Pernyataan yang paling tepat adalah ....", "options": ["Contoh pertama adalah regresi, sedangkan contoh kedua adalah klasifikasi.", "Kedua contoh selalu merupakan klasifikasi karena menggunakan data komputer.", "Contoh pertama merupakan klasifikasi, sedangkan contoh kedua merupakan regresi apabila targetnya berupa nilai numerik kontinu.", "Kedua contoh tidak dapat diselesaikan menggunakan pembelajaran mesin."], "answer": 2, "explanation": "Klasifikasi memprediksi kategori, sedangkan regresi memprediksi nilai numerik."}, {"section": "PCK", "q": "Seorang peserta didik membangun model klasifikasi. Sebelum membagi dataset menjadi data latih dan data uji, ia menghitung parameter normalisasi menggunakan seluruh dataset. Setelah itu, ia melatih model dan melaporkan kinerja pada data uji. Masalah metodologis yang paling tepat diidentifikasi adalah ....", "options": ["Terjadi risiko kebocoran data karena informasi dari data uji telah digunakan dalam proses prapemrosesan sebelum evaluasi.", "Tidak ada masalah karena normalisasi selalu boleh dilakukan pada seluruh dataset sebelum pembagian.", "Data uji harus selalu digunakan untuk melatih model agar hasilnya lebih akurat.", "Semua proses normalisasi harus dihindari dalam pembelajaran mesin."], "answer": 0, "explanation": "Menggunakan informasi data uji dalam prapemrosesan sebelum pembagian dapat menyebabkan kebocoran data dan estimasi kinerja yang bias."}, {"section": "PCK", "q": "Peserta didik membuat model AI untuk membantu mengelompokkan calon penerima bantuan sekolah. Model menghasilkan prediksi berdasarkan data historis yang ternyata tidak mewakili semua kelompok peserta didik secara adil. Apa arahan guru yang paling tepat?", "options": ["Menggunakan hasil model secara otomatis karena model dianggap objektif.", "Menyembunyikan keterbatasan model agar hasil proyek terlihat baik.", "Mengumpulkan sebanyak mungkin data pribadi tanpa memperhatikan tujuan dan perlindungan data.", "Memeriksa kualitas dan keterwakilan data, mengevaluasi kemungkinan bias, menjelaskan keterbatasan model, serta menekankan pengawasan manusia dan perlindungan data."], "answer": 3, "explanation": "Pengembangan AI yang bertanggung jawab perlu memperhatikan bias, privasi, keterbatasan model, dan pengawasan manusia."}, {"section": "PCK", "q": "Guru memberikan proyek pembuatan aplikasi sederhana. Ia ingin menilai kemampuan berpikir komputasional dan pemrograman peserta didik, bukan hanya tampilan aplikasi yang dihasilkan. Rancangan asesmen yang paling tepat adalah ....", "options": ["Menilai hanya keindahan antarmuka aplikasi.", "Menggunakan rubrik yang menilai pemahaman masalah, dekomposisi, rancangan algoritma, ketepatan kode, pengujian dan debugging, penjelasan solusi, serta kontribusi individu.", "Memberikan nilai berdasarkan jumlah baris kode yang ditulis.", "Memberikan nilai yang sama kepada seluruh peserta didik tanpa memeriksa proses dan hasil kerja."], "answer": 1, "explanation": "Rubrik multidimensi mengukur proses berpikir, kualitas algoritma, implementasi, pengujian, dan pemahaman peserta didik."}];
+const questions = [
+  {
+    "section": "SJT",
+    "q": "Saat pembelajaran algoritma dimulai, internet sekolah terputus. Tujuan pembelajaran hari itu adalah memahami urutan instruksi dan percabangan sederhana. Tindakan guru yang paling tepat adalah ....",
+    "options": [
+      "Mengalihkan kegiatan ke simulasi tanpa komputer, misalnya kartu instruksi dan diagram alir, lalu tetap memeriksa ketercapaian tujuan.",
+      "Menghentikan pembelajaran sampai koneksi internet kembali normal.",
+      "Meminta peserta didik yang memiliki kuota mengerjakan tugas, sedangkan lainnya menunggu.",
+      "Mengganti tujuan pembelajaran menjadi menonton video pada pertemuan berikutnya."
+    ],
+    "answer": 0,
+    "explanation": "Tujuan belajar tetap dapat dicapai melalui aktivitas unplugged ketika perangkat atau internet tidak tersedia.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Dalam satu kelas, sebagian peserta didik sudah mampu membuat program dengan percabangan, sedangkan sebagian lain masih bingung membedakan variabel dan nilai. Strategi guru yang paling tepat adalah ....",
+    "options": [
+      "Memberikan tugas dengan tingkat kesulitan tertinggi kepada semua peserta didik agar terbiasa menghadapi tantangan.",
+      "Meminta peserta didik yang belum paham belajar sendiri setelah kelas selesai.",
+      "Melakukan asesmen diagnostik, memberi contoh dan bantuan bertahap bagi yang membutuhkan, serta menyediakan tantangan lanjutan bagi yang sudah siap.",
+      "Memisahkan peserta didik berdasarkan kemampuan secara permanen sepanjang semester."
+    ],
+    "answer": 2,
+    "explanation": "Asesmen diagnostik dan dukungan terdiferensiasi membantu peserta didik menuju tujuan yang sama melalui kebutuhan belajar yang berbeda."
+  },
+  {
+    "section": "SJT",
+    "q": "Seorang peserta didik menyebarkan foto temannya yang memalukan melalui grup kelas. Korban tampak tertekan dan enggan mengikuti pelajaran. Respons guru yang paling tepat adalah ....",
+    "options": [
+      "Membahas identitas korban dan pelaku secara terbuka agar kelas mendapat pelajaran.",
+      "Melindungi korban, menghentikan penyebaran, mendokumentasikan informasi seperlunya, dan menindaklanjuti sesuai prosedur perlindungan peserta didik di sekolah.",
+      "Meminta korban mengabaikan kejadian karena berlangsung di media digital.",
+      "Menghukum seluruh kelas dengan tugas tambahan tanpa menyelidiki kejadian."
+    ],
+    "answer": 1,
+    "explanation": "Prioritasnya adalah keselamatan korban, penghentian penyebaran, kerahasiaan, dan penanganan sesuai prosedur sekolah.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Guru menduga laporan proyek peserta didik dibuat menggunakan AI generatif karena gaya bahasanya berbeda dari biasanya. Guru belum mengetahui proses pengerjaannya. Langkah paling tepat adalah ....",
+    "options": [
+      "Meminta peserta didik menjelaskan isi dan proses pengerjaan, memeriksa bukti proses yang relevan, lalu menerapkan kebijakan penggunaan AI yang telah disampaikan.",
+      "Langsung memberi nilai nol karena detektor AI menyatakan kemungkinan tinggi.",
+      "Melarang seluruh bentuk AI tanpa memeriksa aturan tugas yang berlaku.",
+      "Mengabaikan dugaan tersebut dan memberi nilai hanya berdasarkan panjang laporan."
+    ],
+    "answer": 0,
+    "explanation": "Dugaan saja tidak cukup untuk menetapkan pelanggaran; proses, bukti, dan kebijakan yang jelas perlu diperiksa.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Orang tua meminta nilai proyek anaknya dinaikkan karena anak tersebut telah bekerja keras. Namun, beberapa kriteria pada rubrik belum terpenuhi. Respons guru yang paling profesional adalah ....",
+    "options": [
+      "Menaikkan nilai untuk menjaga hubungan baik dengan orang tua.",
+      "Menjelaskan rubrik dan bukti penilaian secara objektif, mendengarkan keberatan, serta memeriksa ulang jika ada alasan yang dapat dipertanggungjawabkan.",
+      "Menolak berbicara karena nilai merupakan urusan guru semata.",
+      "Membandingkan nilai anak tersebut dengan nilai teman sekelas sebagai pembenaran."
+    ],
+    "answer": 1,
+    "explanation": "Penilaian harus transparan dan berbasis kriteria, tetapi tetap terbuka terhadap klarifikasi atau koreksi yang beralasan."
+  },
+  {
+    "section": "SJT",
+    "q": "Seorang peserta didik dengan hambatan penglihatan kesulitan membaca kode yang ditampilkan dengan huruf kecil. Agar ia tetap dapat mencapai kompetensi yang ditargetkan, guru sebaiknya ....",
+    "options": [
+      "Membebaskannya dari seluruh kegiatan pemrograman.",
+      "Meminta teman sebangku mengerjakan seluruh kode untuknya.",
+      "Menyediakan materi yang aksesibel, seperti pembesaran huruf atau pembaca layar jika sesuai, dan membicarakan dukungan yang dibutuhkan bersama peserta didik.",
+      "Mempertahankan tampilan tanpa penyesuaian agar semua peserta didik diperlakukan identik."
+    ],
+    "answer": 2,
+    "explanation": "Akomodasi aksesibilitas mengurangi hambatan tanpa menghilangkan tujuan kompetensi.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Laporan proyek jaringan komputer memuat beberapa paragraf yang disalin dari situs web tanpa atribusi. Guru ingin menumbuhkan integritas akademik sekaligus memastikan pemahaman peserta didik. Tindakan terbaik adalah ....",
+    "options": [
+      "Menjelaskan atribusi sumber dan parafrasa, meminta peserta didik memperbaiki laporan dengan pemahamannya sendiri, serta menerapkan aturan penilaian secara konsisten.",
+      "Memberikan nilai penuh karena informasi yang disajikan tampak lengkap.",
+      "Mengumumkan nama peserta didik sebagai pelaku plagiarisme di depan sekolah.",
+      "Mengabaikan masalah karena tugas tersebut bukan penelitian perguruan tinggi."
+    ],
+    "answer": 0,
+    "explanation": "Pembinaan integritas akademik perlu disertai perbaikan karya, pemahaman sumber, dan penerapan aturan secara konsisten."
+  },
+  {
+    "section": "SJT",
+    "q": "Setelah kuis struktur percabangan, sebagian besar peserta didik salah menelusuri alur program. Guru menyadari bahwa contoh latihan sebelumnya terlalu sederhana dibandingkan soal kuis. Tindak lanjut yang tepat adalah ....",
+    "options": [
+      "Menurunkan batas ketuntasan agar lebih banyak peserta didik dinyatakan berhasil.",
+      "Mengulang kuis yang sama sampai nilai meningkat.",
+      "Menganalisis pola kesalahan, menjelaskan kembali miskonsepsi melalui contoh bertahap, lalu memberikan asesmen lanjutan yang sepadan dengan tujuan.",
+      "Menyimpulkan bahwa peserta didik belum cocok belajar pemrograman."
+    ],
+    "answer": 2,
+    "explanation": "Hasil asesmen digunakan untuk mengidentifikasi miskonsepsi, memperbaiki pembelajaran, dan memeriksa perkembangan setelah tindak lanjut."
+  },
+  {
+    "section": "SJT",
+    "q": "Dalam proyek aplikasi, satu anggota mengerjakan hampir semua kode, sedangkan anggota lain hanya mencantumkan nama pada laporan. Guru sebaiknya ....",
+    "options": [
+      "Memberikan nilai kelompok yang sama tanpa meninjau kontribusi.",
+      "Menetapkan peran dan target yang jelas, memantau kontribusi, serta menilai hasil kelompok dan pemahaman individu dengan kriteria transparan.",
+      "Meminta anggota yang paling mampu menyelesaikan seluruh proyek.",
+      "Membatalkan proyek dan memberi nilai nol kepada seluruh anggota."
+    ],
+    "answer": 1,
+    "explanation": "Akuntabilitas individu, peran yang jelas, dan pemantauan proses membuat kolaborasi lebih adil.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Guru ingin meminta layanan AI publik menganalisis kesulitan belajar peserta didik. Data yang tersedia mencakup nama lengkap, nomor induk, nilai, dan catatan perilaku. Keputusan yang paling tepat adalah ....",
+    "options": [
+      "Mengunggah semua data karena tujuannya pendidikan.",
+      "Mengunggah data dengan nama depan saja, tanpa meninjau risiko identifikasi.",
+      "Mengunggah data lengkap jika layanan AI memiliki antarmuka yang mudah digunakan.",
+      "Tidak mengunggah data pribadi ke layanan yang belum disetujui; gunakan data minimum yang telah dianonimkan dan layanan yang sesuai dengan kebijakan perlindungan data."
+    ],
+    "answer": 3,
+    "explanation": "Guru perlu meminimalkan data, menjaga identitas peserta didik, dan mematuhi kebijakan privasi serta keamanan.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Peserta didik menjalankan skrip untuk menebak kata sandi Wi-Fi sekolah tanpa izin dan menyebutnya sebagai latihan keamanan siber. Respons guru yang paling tepat adalah ....",
+    "options": [
+      "Membiarkan kegiatan karena keterampilan tersebut penting bagi calon praktisi keamanan siber.",
+      "Meminta peserta didik mencoba jaringan sekolah lain sebagai pembanding.",
+      "Menghentikan aktivitas tanpa izin, menjelaskan batas etika dan kewenangan, melaporkan sesuai prosedur, serta mengarahkan praktik ke laboratorium yang diizinkan.",
+      "Meminta peserta didik mengirimkan hasil percobaan ke grup kelas."
+    ],
+    "answer": 2,
+    "explanation": "Pengujian keamanan harus mendapat izin dan dilakukan dalam lingkungan yang sah serta terkendali.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Studi kasus: kelas XI memiliki 36 peserta didik, tetapi laboratorium hanya menyediakan 12 komputer. Tujuan pembelajaran adalah menyusun pseudocode untuk memecahkan masalah. Pengelolaan pembelajaran paling tepat adalah ....",
+    "options": [
+      "Membentuk kelompok kecil dengan peran yang jelas dan rotasi penggunaan komputer, disertai rancangan algoritma di kertas agar semua peserta didik tetap aktif.",
+      "Meminta 24 peserta didik menonton dari belakang saat 12 peserta didik bekerja.",
+      "Mengurangi tujuan pembelajaran menjadi demonstrasi guru saja.",
+      "Mewajibkan semua peserta didik membeli laptop pribadi."
+    ],
+    "answer": 0,
+    "explanation": "Rotasi, pembagian peran, dan rancangan unplugged menjaga partisipasi saat sarana terbatas.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Sekolah belum memiliki lisensi perangkat lunak berbayar yang biasa digunakan untuk mengolah data. Guru tetap perlu mengajarkan kompetensi yang sama. Pilihan terbaik adalah ....",
+    "options": [
+      "Menggunakan salinan bajakan karena kegiatan berlangsung di sekolah.",
+      "Meminta peserta didik mencari perangkat lunak tidak resmi di internet.",
+      "Menghapus materi pengolahan data dari pembelajaran.",
+      "Memilih perangkat lunak legal yang tersedia, termasuk alternatif sumber terbuka yang sesuai dengan tujuan pembelajaran."
+    ],
+    "answer": 3,
+    "explanation": "Pemilihan perangkat harus memperhatikan legalitas, akses, dan kesesuaian dengan tujuan belajar."
+  },
+  {
+    "section": "SJT",
+    "q": "Saat diskusi algoritma, seorang peserta didik memberikan jawaban keliru dan ditertawakan teman-temannya. Guru sebaiknya ....",
+    "options": [
+      "Langsung memberi jawaban benar agar pelajaran cepat selesai.",
+      "Mengapresiasi usaha peserta didik, menggali alasan di balik jawabannya, lalu membimbing kelas menemukan letak kesalahan konsep.",
+      "Meminta peserta didik yang salah berdiri sampai dapat menjawab benar.",
+      "Mengabaikan jawaban tersebut dan beralih ke peserta didik yang lebih pandai."
+    ],
+    "answer": 1,
+    "explanation": "Kesalahan dapat menjadi sumber belajar apabila guru menggali cara berpikir dan menjaga suasana kelas yang aman."
+  },
+  {
+    "section": "SJT",
+    "q": "Studi kasus: guru pamong mengamati pembelajaran dan menyatakan bahwa tujuan pembelajaran belum terlihat jelas dalam aktivitas peserta didik. Guru merasa telah menyiapkan perangkat ajar dengan baik. Respons profesional yang paling tepat adalah ....",
+    "options": [
+      "Menolak masukan karena perangkat ajar sudah selesai dibuat.",
+      "Mengganti seluruh metode tanpa meminta penjelasan lebih lanjut.",
+      "Meminta contoh bukti yang spesifik, merefleksikan kesesuaian tujuan-aktivitas-asesmen, lalu mencoba perbaikan pada pertemuan berikutnya.",
+      "Menghindari observasi berikutnya agar tidak menerima kritik."
+    ],
+    "answer": 2,
+    "explanation": "Refleksi yang berbasis bukti dan masukan spesifik lebih membantu perbaikan praktik daripada menolak atau mengubah semuanya secara impulsif.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Peserta didik menemukan unggahan viral yang menyatakan bahwa semua situs dengan HTTPS pasti bebas penipuan. Cara guru menindaklanjuti temuan tersebut adalah ....",
+    "options": [
+      "Mengajak peserta didik memeriksa sumber dan bukti, serta menjelaskan bahwa HTTPS melindungi komunikasi tetapi tidak menjamin pengelola situs dapat dipercaya.",
+      "Menyatakan bahwa seluruh informasi viral pasti salah.",
+      "Meminta peserta didik menghafalkan bahwa HTTPS berarti situs resmi.",
+      "Melarang penggunaan internet sebagai sumber belajar."
+    ],
+    "answer": 0,
+    "explanation": "Literasi digital menuntut verifikasi sumber; HTTPS tidak menjamin kebenaran isi atau integritas pemilik situs.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Studi kasus: peserta didik menggunakan AI untuk membuat kode tugas. Aturan tugas memperbolehkan AI sebagai pendamping, tetapi hasil kerja harus dipahami dan kontribusinya diungkapkan. Guru sebaiknya ....",
+    "options": [
+      "Langsung memberi nilai nol karena kode dibuat dengan bantuan AI.",
+      "Menerima kode tanpa pertanyaan selama program dapat berjalan.",
+      "Melarang peserta didik menjelaskan kode karena AI yang menyusunnya.",
+      "Meminta peserta didik mengungkapkan penggunaan AI, menjelaskan alur kode, menguji perubahan sederhana, dan menilai pemahaman berdasarkan rubrik."
+    ],
+    "answer": 3,
+    "explanation": "Penilaian perlu memastikan transparansi penggunaan AI dan penguasaan konsep, sesuai kebijakan tugas.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Sebagian peserta didik hanya memiliki koneksi internet yang tidak stabil dan kesulitan mengikuti konferensi video panjang. Strategi pembelajaran daring yang paling inklusif adalah ....",
+    "options": [
+      "Mewajibkan seluruh peserta didik hadir melalui video tanpa alternatif.",
+      "Menyediakan materi berukuran kecil, instruksi tertulis, aktivitas asinkron, dan cara pengumpulan tugas yang tetap mengukur tujuan belajar.",
+      "Memberi nilai rendah kepada peserta didik yang koneksinya terputus.",
+      "Menunda seluruh pembelajaran sampai semua peserta didik memiliki koneksi yang sama."
+    ],
+    "answer": 1,
+    "explanation": "Materi asinkron dan alternatif akses mengurangi hambatan teknis tanpa mengubah kompetensi yang dinilai.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Guru ingin meminta peserta didik membuat survei kebiasaan penggunaan internet. Beberapa pertanyaan berpotensi mengungkap identitas dan kebiasaan pribadi. Tindakan guru yang paling tepat adalah ....",
+    "options": [
+      "Mengumpulkan semua informasi karena survei dilakukan untuk tugas sekolah.",
+      "Meminta peserta didik mengisi survei tanpa menjelaskan tujuannya.",
+      "Menetapkan tujuan yang jelas, mengumpulkan data seperlunya, menjelaskan penggunaan data, dan mengikuti ketentuan persetujuan serta perlindungan data sekolah.",
+      "Mewajibkan nama lengkap pada semua jawaban agar analisis mudah dilakukan."
+    ],
+    "answer": 2,
+    "explanation": "Pengumpulan data harus proporsional, transparan, dan sesuai dengan ketentuan privasi yang berlaku.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Proyek presentasi digital harus dikerjakan di rumah, tetapi beberapa peserta didik tidak memiliki perangkat yang memadai. Tindakan yang paling tepat adalah ....",
+    "options": [
+      "Menyediakan kesempatan memakai fasilitas sekolah, pilihan pengerjaan luring atau format yang lebih ringan, serta jadwal yang realistis dengan kompetensi tetap terukur.",
+      "Memberi nilai lebih rendah kepada peserta didik yang tidak memiliki perangkat.",
+      "Mengharuskan keluarga membeli perangkat yang sama.",
+      "Menghapus peserta didik tersebut dari proyek."
+    ],
+    "answer": 0,
+    "explanation": "Alternatif akses menjaga keadilan kesempatan belajar tanpa mengubah kompetensi utama.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Seorang peserta didik dengan disleksia mengalami kesulitan membaca instruksi tertulis yang padat, tetapi mampu menjelaskan konsep secara lisan. Penyesuaian yang paling tepat adalah ....",
+    "options": [
+      "Mengurangi seluruh capaian pembelajaran yang harus dicapai.",
+      "Menyajikan instruksi dalam langkah ringkas, struktur visual yang jelas, dan pilihan respons yang aksesibel, sambil tetap menilai kompetensi yang ditargetkan.",
+      "Memberikan nilai penuh tanpa asesmen.",
+      "Meminta teman mengerjakan tugas atas namanya."
+    ],
+    "answer": 1,
+    "explanation": "Penyesuaian akses dapat mengurangi hambatan membaca tanpa menghilangkan kompetensi Informatika yang diukur."
+  },
+  {
+    "section": "SJT",
+    "q": "Diskusi kelas tentang desain aplikasi didominasi satu peserta didik. Anggota lain tidak lagi menyampaikan ide. Guru sebaiknya ....",
+    "options": [
+      "Memilih desain peserta didik yang paling cepat membuat kode.",
+      "Membiarkan kelompok menyelesaikannya sendiri tanpa fasilitasi.",
+      "Memfasilitasi giliran berbicara, meminta alasan berdasarkan kebutuhan pengguna, dan menyepakati pembagian tugas yang adil.",
+      "Membatalkan proyek seluruh kelompok."
+    ],
+    "answer": 2,
+    "explanation": "Fasilitasi dialog dan pembagian peran membantu kolaborasi yang produktif serta adil."
+  },
+  {
+    "section": "SJT",
+    "q": "Studi kasus: listrik padam saat asesmen praktik pemrograman. Sebagian hasil kerja tersimpan, sedangkan beberapa peserta didik kehilangan kode yang belum disimpan. Tindakan guru paling tepat adalah ....",
+    "options": [
+      "Memberi nilai berdasarkan berkas yang tersimpan saja tanpa meninjau gangguan.",
+      "Menganggap peserta didik yang belum selesai tidak menguasai materi.",
+      "Mengulang ujian hanya bagi peserta didik yang disukai guru.",
+      "Mendokumentasikan gangguan, memeriksa bukti pekerjaan yang tersedia, berkoordinasi dengan sekolah, dan menetapkan kesempatan penyelesaian yang adil bagi peserta didik terdampak."
+    ],
+    "answer": 3,
+    "explanation": "Gangguan teknis perlu didokumentasikan dan ditangani dengan prosedur yang adil serta konsisten.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Guru akan menilai proyek kelompok aplikasi. Ia ingin menghindari nilai yang hanya mencerminkan hasil akhir kelompok, bukan proses belajar masing-masing peserta didik. Rancangan yang paling tepat adalah ....",
+    "options": [
+      "Menggunakan rubrik produk dan proses, catatan kontribusi, refleksi individu, serta pemeriksaan pemahaman setiap anggota.",
+      "Memberikan nilai yang sama kepada semua anggota tanpa melihat proses.",
+      "Menilai berdasarkan jumlah baris kode yang ditulis tiap anggota.",
+      "Menilai hanya desain visual karena mudah dibandingkan."
+    ],
+    "answer": 0,
+    "explanation": "Penilaian yang mencakup produk, proses, kontribusi, dan pemahaman individu memberikan gambaran kompetensi yang lebih utuh.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Sekolah mengusulkan perangkat pemantauan aktivitas komputer peserta didik yang merekam semua ketikan dan layar, termasuk ketika mereka mengerjakan tugas pribadi. Sebelum menggunakannya, guru sebaiknya ....",
+    "options": [
+      "Menerapkan perangkat itu diam-diam agar peserta didik tidak mengubah perilaku.",
+      "Meninjau tujuan dan proporsionalitas pemantauan, kebijakan sekolah, keamanan data, transparansi kepada pihak terkait, serta alternatif yang kurang intrusif.",
+      "Merekam semua aktivitas tanpa batas karena komputer milik sekolah.",
+      "Membagikan hasil pemantauan ke grup kelas."
+    ],
+    "answer": 1,
+    "explanation": "Pemantauan harus proporsional, transparan, aman, dan sesuai kebijakan; pilih cara yang paling sedikit mengganggu privasi.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Studi kasus: peserta didik menerima surel yang mengaku berasal dari layanan sekolah dan meminta mereka masuk melalui tautan untuk menghindari penutupan akun. Langkah yang paling tepat diajarkan guru adalah ....",
+    "options": [
+      "Mengeklik tautan untuk memastikan apakah halaman terlihat resmi.",
+      "Meneruskan surel kepada seluruh kelas agar semua peserta didik memeriksa tautan itu.",
+      "Membalas surel dengan mengirimkan kata sandi palsu.",
+      "Tidak mengeklik tautan, memeriksa pengumuman melalui kanal resmi secara terpisah, melaporkan pesan mencurigakan, dan tidak membagikan kredensial."
+    ],
+    "answer": 3,
+    "explanation": "Verifikasi melalui kanal resmi dan pelaporan mengurangi risiko phishing serta pencurian kredensial.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Peserta didik melaporkan bahwa akun belajarnya menunjukkan aktivitas yang tidak dikenal. Akun masih dapat diakses. Saran guru yang paling tepat adalah ....",
+    "options": [
+      "Mengamankan akun melalui prosedur resmi, mengganti kata sandi dari perangkat tepercaya, mengaktifkan autentikasi multifaktor jika tersedia, dan melaporkan insiden kepada pengelola layanan.",
+      "Mencoba masuk ke akun orang yang dicurigai sebagai pelaku.",
+      "Mengirim kata sandi ke guru melalui grup kelas agar guru dapat memeriksanya.",
+      "Mengabaikan aktivitas tersebut selama akun masih bisa dibuka."
+    ],
+    "answer": 0,
+    "explanation": "Pemulihan resmi, penggantian kredensial, autentikasi multifaktor, dan pelaporan merupakan langkah aman.",
+    "caseStudy": true
+  },
+  {
+    "section": "SJT",
+    "q": "Saat demonstrasi, program guru menghasilkan keluaran yang salah. Peserta didik menunggu penjelasan. Tindakan pembelajaran yang paling tepat adalah ....",
+    "options": [
+      "Menyalahkan komputer dan langsung mengganti topik.",
+      "Menampilkan hasil yang diharapkan tanpa menunjukkan kesalahan.",
+      "Memperagakan debugging secara sistematis dengan memeriksa asumsi, masukan, nilai variabel, dan langkah program.",
+      "Meminta peserta didik menghafal kode yang sudah diperbaiki tanpa pembahasan."
+    ],
+    "answer": 2,
+    "explanation": "Debugging yang transparan mencontohkan pemecahan masalah berbasis bukti dan penalaran."
+  },
+  {
+    "section": "SJT",
+    "q": "Pada akhir pertemuan, guru belum memiliki bukti memadai apakah peserta didik memahami konsep utama karena sebagian besar waktu digunakan untuk ceramah. Langkah terbaik adalah ....",
+    "options": [
+      "Menganggap pembelajaran berhasil karena semua materi sudah dijelaskan.",
+      "Memberikan pekerjaan rumah sebanyak mungkin tanpa mengetahui kesulitan peserta didik.",
+      "Memaksakan semua materi selesai meskipun konsep inti belum dikuasai.",
+      "Melakukan asesmen singkat, menentukan bagian yang belum dikuasai, lalu merencanakan penguatan atau pengayaan berdasarkan hasilnya."
+    ],
+    "answer": 3,
+    "explanation": "Asesmen formatif memberi bukti belajar untuk menentukan tindak lanjut yang sesuai."
+  },
+  {
+    "section": "SJT",
+    "q": "Studi kasus: sekolah memperbarui capaian pembelajaran Informatika dan meminta guru meninjau perangkat ajarnya. Langkah yang paling tepat adalah ....",
+    "options": [
+      "Mempertahankan semua perangkat ajar tahun lalu karena telah digunakan sebelumnya.",
+      "Menelaah capaian pembelajaran, menyelaraskan tujuan, aktivitas dan asesmen, lalu mengevaluasi efektivitasnya berdasarkan kebutuhan peserta didik.",
+      "Mengganti materi dengan aplikasi yang sedang populer tanpa meninjau kompetensi.",
+      "Mengikuti urutan buku teks secara mutlak meskipun tidak sesuai dengan tujuan."
+    ],
+    "answer": 1,
+    "explanation": "Perangkat ajar harus selaras dengan capaian pembelajaran dan dievaluasi berdasarkan bukti kebutuhan serta perkembangan peserta didik.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Studi kasus: peserta didik merancang sistem peminjaman buku perpustakaan. Mereka memasukkan detail seperti warna sampul dan jenis huruf, padahal tujuan sistem adalah mencatat peminjaman dan pengembalian. Untuk mengajarkan abstraksi, guru sebaiknya ....",
+    "options": [
+      "Meminta peserta didik memasukkan semua informasi yang tersedia tentang buku.",
+      "Membimbing peserta didik memilih informasi relevan, seperti ID buku, ID peminjam, tanggal pinjam, dan tanggal kembali, serta mengabaikan detail yang tidak diperlukan.",
+      "Menghapus semua informasi kecuali judul buku.",
+      "Memulai dengan sintaks pemrograman tanpa menganalisis kebutuhan sistem."
+    ],
+    "answer": 1,
+    "explanation": "Abstraksi memilih informasi yang relevan dengan tujuan masalah dan mengabaikan detail yang tidak diperlukan.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Peserta didik kesulitan membuat aplikasi inventaris laboratorium karena mencoba merancang seluruh sistem sekaligus. Pendekatan terbaik untuk mengajarkan dekomposisi adalah ....",
+    "options": [
+      "Meminta mereka menulis seluruh kode dalam satu program panjang.",
+      "Memberikan kode lengkap untuk disalin.",
+      "Membagi masalah menjadi modul lebih kecil, seperti data perangkat, kondisi perangkat, peminjaman, dan pengembalian.",
+      "Menghapus kebutuhan aplikasi sampai hanya tersisa satu tombol."
+    ],
+    "answer": 2,
+    "explanation": "Dekomposisi memecah masalah kompleks menjadi bagian yang lebih kecil dan lebih mudah dikelola."
+  },
+  {
+    "section": "PCK",
+    "q": "Seorang peserta didik berpendapat bahwa kode berikut mencetak angka 1 sampai 5. Apa keluaran yang benar?<pre><code>for i in range(5):\n    print(i)</code></pre>",
+    "options": [
+      "0, 1, 2, 3, 4",
+      "1, 2, 3, 4, 5",
+      "0, 1, 2, 3, 4, 5",
+      "5 saja"
+    ],
+    "answer": 0,
+    "explanation": "<code>range(5)</code> menghasilkan urutan 0 sampai 4 karena nilai batas akhirnya tidak disertakan."
+  },
+  {
+    "section": "PCK",
+    "q": "Perhatikan program Python berikut:<pre><code>x = 7\nif x &gt; 5:\n    print(\"A\")\nelse:\n    print(\"B\")</code></pre>Keluaran program tersebut adalah ....",
+    "options": [
+      "B",
+      "7",
+      "Tidak ada keluaran",
+      "A"
+    ],
+    "answer": 3,
+    "explanation": "Karena 7 lebih besar daripada 5, kondisi bernilai benar sehingga program mencetak A."
+  },
+  {
+    "section": "PCK",
+    "q": "Perhatikan kode berikut:<pre><code>for i in range(1, 5):\n    print(i)</code></pre>Urutan angka yang dicetak adalah ....",
+    "options": [
+      "1, 2, 3, 4, 5",
+      "1, 2, 3, 4",
+      "0, 1, 2, 3, 4",
+      "1, 2, 3, 5"
+    ],
+    "answer": 1,
+    "explanation": "Pada <code>range(mulai, akhir)</code>, nilai mulai disertakan sedangkan nilai akhir tidak disertakan."
+  },
+  {
+    "section": "PCK",
+    "q": "Perhatikan program berikut:<pre><code>nilai = [72, 85, 90]\nprint(nilai[1])</code></pre>Apa keluaran program tersebut?",
+    "options": [
+      "72",
+      "90",
+      "85",
+      "Terjadi kesalahan indeks"
+    ],
+    "answer": 2,
+    "explanation": "Indeks list Python dimulai dari 0, sehingga <code>nilai[1]</code> adalah elemen kedua, yaitu 85."
+  },
+  {
+    "section": "PCK",
+    "q": "Guru mengajarkan fungsi untuk menghitung luas persegi panjang dan ingin hasilnya digunakan kembali oleh bagian program lain. Penjelasan yang tepat tentang <code>return</code> adalah ....",
+    "options": [
+      "<code>return</code> selalu menampilkan nilai langsung ke layar.",
+      "<code>return</code> mengembalikan nilai kepada pemanggil fungsi sehingga hasilnya dapat disimpan atau digunakan kembali.",
+      "<code>return</code> dan <code>print()</code> selalu memiliki fungsi yang sama.",
+      "Fungsi yang memakai <code>return</code> tidak dapat menerima parameter."
+    ],
+    "answer": 1,
+    "explanation": "<code>return</code> mengembalikan nilai; <code>print()</code> menampilkan informasi ke layar."
+  },
+  {
+    "section": "PCK",
+    "q": "Perhatikan ekspresi logika Python berikut:<pre><code>not (True and False) or False</code></pre>Hasil evaluasinya adalah ....",
+    "options": [
+      "False",
+      "Tidak memiliki nilai logika",
+      "Terjadi kesalahan sintaks",
+      "True"
+    ],
+    "answer": 3,
+    "explanation": "<code>True and False</code> bernilai False; negasinya True, kemudian <code>True or False</code> menghasilkan True."
+  },
+  {
+    "section": "PCK",
+    "q": "Bilangan biner <code>10110</code> jika dikonversi ke desimal bernilai ....",
+    "options": [
+      "18",
+      "20",
+      "22",
+      "24"
+    ],
+    "answer": 2,
+    "explanation": "Nilainya adalah 1×16 + 0×8 + 1×4 + 1×2 + 0×1 = 22."
+  },
+  {
+    "section": "PCK",
+    "q": "Bilangan desimal 13 jika dikonversi ke biner adalah ....",
+    "options": [
+      "1011",
+      "1101",
+      "1110",
+      "1001"
+    ],
+    "answer": 1,
+    "explanation": "13 = 8 + 4 + 1, sehingga representasi binernya adalah 1101."
+  },
+  {
+    "section": "PCK",
+    "q": "Tabel <code>siswa</code> memiliki kolom <code>nama</code> dan <code>nilai</code>. Guru ingin menampilkan nama peserta didik yang memperoleh nilai minimal 80. Perintah SQL yang tepat adalah ....",
+    "options": [
+      "<code>SELECT nama FROM siswa;</code>",
+      "<code>SELECT * WHERE nilai &gt;= 80;</code>",
+      "<code>SELECT nama FROM siswa WHERE nilai &lt; 80;</code>",
+      "<code>SELECT nama FROM siswa WHERE nilai &gt;= 80;</code>"
+    ],
+    "answer": 3,
+    "explanation": "Klausa <code>WHERE nilai &gt;= 80</code> menyaring baris dengan nilai sekurang-kurangnya 80."
+  },
+  {
+    "section": "PCK",
+    "q": "Dalam tabel anggota perpustakaan, setiap anggota harus memiliki identitas unik meskipun ada anggota dengan nama yang sama. Konsep basis data yang tepat adalah ....",
+    "options": [
+      "<em>Primary key</em> yang mengidentifikasi setiap rekaman secara unik dan tidak boleh bernilai kosong.",
+      "Kolom nama yang selalu boleh berulang dan menjadi identitas utama.",
+      "Kolom deskripsi yang berisi keterangan bebas.",
+      "<em>Foreign key</em> yang selalu menjadi identitas utama tabel."
+    ],
+    "answer": 0,
+    "explanation": "Primary key membedakan setiap rekaman secara unik dan tidak boleh bernilai NULL."
+  },
+  {
+    "section": "PCK",
+    "q": "Studi kasus: basis data perpustakaan memiliki tabel <code>anggota</code> dan <code>peminjaman</code>. Setiap transaksi peminjaman harus terhubung dengan anggota yang melakukan peminjaman. Cara yang tepat adalah ....",
+    "options": [
+      "Menyalin seluruh data anggota ke dalam setiap kolom tabel peminjaman tanpa ID.",
+      "Menggunakan nama anggota sebagai satu-satunya penghubung meskipun nama dapat sama.",
+      "Menyimpan ID anggota sebagai <em>foreign key</em> pada tabel peminjaman yang merujuk ke primary key tabel anggota.",
+      "Menghapus tabel anggota setelah transaksi dibuat."
+    ],
+    "answer": 2,
+    "explanation": "Foreign key membangun relasi antartabel dan membantu menjaga integritas referensial.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Data nilai peserta didik terdapat pada sel B2 sampai B10. Rumus spreadsheet yang digunakan untuk menghitung rata-rata adalah ....",
+    "options": [
+      "<code>=SUM(B2:B10)</code>",
+      "<code>=AVERAGE(B2:B10)</code>",
+      "<code>=COUNT(B2:B10)</code>",
+      "<code>=MAX(B2:B10)</code>"
+    ],
+    "answer": 1,
+    "explanation": "Fungsi <code>AVERAGE</code> menghitung rata-rata nilai numerik dalam rentang yang ditentukan."
+  },
+  {
+    "section": "PCK",
+    "q": "Pada spreadsheet, sel C2 berisi nilai 72. Guru ingin menampilkan teks “Tuntas” jika nilai minimal 75 dan “Remedial” jika kurang dari 75. Rumus yang tepat adalah ....",
+    "options": [
+      "<code>=SUM(C2&gt;=75,\"Tuntas\",\"Remedial\")</code>",
+      "<code>=IF(C2&lt;75,\"Tuntas\",\"Remedial\")</code>",
+      "<code>=IF(C2&gt;=75,\"Tuntas\",\"Remedial\")</code>",
+      "<code>=COUNT(C2,\"Tuntas\",\"Remedial\")</code>"
+    ],
+    "answer": 2,
+    "explanation": "Fungsi IF menguji kondisi; nilai 75 atau lebih menghasilkan “Tuntas”, selain itu “Remedial”."
+  },
+  {
+    "section": "PCK",
+    "q": "Guru memiliki data jumlah pengguna laboratorium setiap bulan selama satu tahun dan ingin menunjukkan perubahan dari waktu ke waktu. Visualisasi yang paling sesuai adalah ....",
+    "options": [
+      "Diagram lingkaran yang tidak mempertahankan urutan bulan.",
+      "Histogram untuk mengelompokkan frekuensi interval.",
+      "Diagram pencar tanpa urutan waktu.",
+      "Diagram garis dengan bulan pada sumbu waktu dan jumlah pengguna sebagai nilai."
+    ],
+    "answer": 3,
+    "explanation": "Diagram garis cocok untuk memperlihatkan tren atau perubahan data sepanjang waktu."
+  },
+  {
+    "section": "PCK",
+    "q": "Dalam data waktu pengerjaan proyek, sebagian besar peserta didik menyelesaikan tugas dalam 30–60 menit, tetapi satu nilai adalah 300 menit karena gangguan perangkat. Pernyataan yang tepat adalah ....",
+    "options": [
+      "Median relatif lebih tahan terhadap satu nilai ekstrem dibandingkan rata-rata aritmetika.",
+      "Rata-rata selalu lebih tahan terhadap pencilan daripada median.",
+      "Pencilan tidak pernah memengaruhi ukuran pemusatan.",
+      "Modus selalu menjadi ukuran terbaik untuk seluruh data numerik."
+    ],
+    "answer": 0,
+    "explanation": "Median umumnya kurang sensitif terhadap nilai ekstrem dibandingkan rata-rata aritmetika."
+  },
+  {
+    "section": "PCK",
+    "q": "Guru ingin menyimpulkan kebiasaan penggunaan internet seluruh peserta didik sekolah, tetapi survei hanya dibagikan melalui media sosial sekolah dan sebagian besar responden adalah pengguna aktif. Kelemahan utama metode ini adalah ....",
+    "options": [
+      "Data pasti tidak dapat diolah dengan komputer.",
+      "Sampel berpotensi bias karena peserta didik yang jarang atau tidak menggunakan platform tersebut kurang terwakili.",
+      "Survei daring selalu menghasilkan sampel yang representatif.",
+      "Data tidak dapat disajikan dalam tabel."
+    ],
+    "answer": 1,
+    "explanation": "Cara perekrutan responden dapat menimbulkan bias seleksi dan membatasi keterwakilan sampel.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Guru ingin mengajarkan <em>binary search</em> pada daftar nomor inventaris komputer. Kondisi penting agar algoritma tersebut dapat diterapkan dengan benar adalah ....",
+    "options": [
+      "Data harus diacak sebelum pencarian.",
+      "Data harus memiliki tepat dua elemen.",
+      "Data harus tersusun menurut urutan yang digunakan dalam pencarian.",
+      "Data harus berupa teks dan tidak boleh berupa angka."
+    ],
+    "answer": 2,
+    "explanation": "Binary search membandingkan nilai tengah dan mempersempit ruang pencarian; metode ini mensyaratkan data terurut."
+  },
+  {
+    "section": "PCK",
+    "q": "Diberikan daftar <code>[5, 2, 4, 1]</code>. Bubble Sort mengurutkan data menaik dengan membandingkan elemen bersebelahan dari kiri ke kanan dan menukar jika urutannya salah. Setelah satu lintasan penuh, hasilnya adalah ....",
+    "options": [
+      "<code>[1, 2, 4, 5]</code>",
+      "<code>[2, 5, 4, 1]</code>",
+      "<code>[5, 2, 4, 1]</code>",
+      "<code>[2, 4, 1, 5]</code>"
+    ],
+    "answer": 3,
+    "explanation": "Dalam satu lintasan dari kiri ke kanan, nilai terbesar berpindah ke posisi terakhir: [2, 4, 1, 5]."
+  },
+  {
+    "section": "PCK",
+    "q": "Pernyataan yang tepat mengenai HTML dan CSS adalah ....",
+    "options": [
+      "HTML mengatur warna, sedangkan CSS mengatur struktur dokumen.",
+      "HTML dan CSS memiliki fungsi yang identik.",
+      "HTML menyusun struktur dan konten halaman, sedangkan CSS mengatur presentasi visualnya.",
+      "CSS digunakan untuk menyimpan seluruh data pengguna."
+    ],
+    "answer": 2,
+    "explanation": "HTML mendefinisikan struktur dan konten; CSS mengatur tata letak, warna, tipografi, dan tampilan."
+  },
+  {
+    "section": "PCK",
+    "q": "Studi kasus: halaman web sekolah memiliki tautan navigasi utama di bagian atas. Elemen HTML semantik yang paling sesuai untuk membungkus tautan navigasi tersebut adalah ....",
+    "options": [
+      "<code>&lt;span&gt;</code>",
+      "<code>&lt;nav&gt;</code>",
+      "<code>&lt;footer&gt;</code>",
+      "<code>&lt;strong&gt;</code>"
+    ],
+    "answer": 1,
+    "explanation": "Elemen <code>&lt;nav&gt;</code> menandai bagian yang berisi tautan navigasi utama dan membantu struktur semantik serta aksesibilitas.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Dalam CSS, aturan <code>.card p { color: blue; }</code> diterapkan pada elemen ....",
+    "options": [
+      "Semua elemen dengan ID <code>card</code> saja.",
+      "Semua paragraf di seluruh halaman tanpa pengecualian.",
+      "Semua elemen <code>card</code> yang berada di dalam paragraf.",
+      "Elemen paragraf yang berada di dalam elemen dengan kelas <code>card</code>."
+    ],
+    "answer": 3,
+    "explanation": "Selektor turunan <code>.card p</code> memilih elemen <code>p</code> yang berada di dalam elemen berk kelas <code>card</code>."
+  },
+  {
+    "section": "PCK",
+    "q": "Saat peserta didik mengetik nama domain situs ke peramban, layanan DNS terutama berfungsi untuk ....",
+    "options": [
+      "Menerjemahkan nama domain menjadi alamat IP yang diperlukan untuk menemukan server.",
+      "Mengenkripsi semua berkas di komputer pengguna.",
+      "Memastikan semua isi situs benar dan bebas penipuan.",
+      "Menggantikan fungsi sistem operasi."
+    ],
+    "answer": 0,
+    "explanation": "DNS membantu menemukan alamat IP yang terkait dengan nama domain; DNS sendiri tidak menjamin kepercayaan isi situs."
+  },
+  {
+    "section": "PCK",
+    "q": "Sebuah komputer memiliki alamat IP <code>192.168.1.10/24</code>. Dengan asumsi jaringan IPv4 standar, alamat jaringan untuk subnet tersebut adalah ....",
+    "options": [
+      "192.168.1.10",
+      "192.168.0.0",
+      "192.168.1.0",
+      "192.168.1.255"
+    ],
+    "answer": 2,
+    "explanation": "Prefix /24 berarti 24 bit pertama merupakan bagian jaringan, sehingga alamat jaringannya 192.168.1.0."
+  },
+  {
+    "section": "PCK",
+    "q": "Studi kasus: komputer laboratorium digunakan oleh banyak peserta didik. Guru ingin mencegah perubahan tidak sengaja pada berkas konfigurasi sistem. Prinsip pengaturan hak akses yang paling tepat adalah ....",
+    "options": [
+      "Memberikan hak administrator kepada semua akun.",
+      "Menerapkan prinsip hak akses minimum; akun hanya diberi izin yang dibutuhkan untuk tugasnya.",
+      "Membuat semua berkas dapat dibaca, ditulis, dan dijalankan oleh siapa pun.",
+      "Menyimpan kata sandi administrator pada berkas teks di desktop."
+    ],
+    "answer": 1,
+    "explanation": "Prinsip least privilege membatasi hak akses sesuai kebutuhan dan mengurangi risiko perubahan atau penyalahgunaan.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Pada gerbang logika AND, masukan A = 1 dan B = 0. Nilai keluarannya adalah ....",
+    "options": [
+      "1",
+      "Tidak dapat ditentukan tanpa jam sistem.",
+      "0",
+      "2"
+    ],
+    "answer": 2,
+    "explanation": "Gerbang AND menghasilkan 1 hanya jika semua masukan bernilai 1."
+  },
+  {
+    "section": "PCK",
+    "q": "Dalam pengelolaan kata sandi, pernyataan yang paling tepat tentang hashing adalah ....",
+    "options": [
+      "Hash kata sandi dirancang sebagai representasi satu arah untuk verifikasi; sistem sebaiknya memakai algoritma hashing kata sandi yang kuat dengan salt.",
+      "Hashing selalu dapat dibalik menjadi kata sandi asli dengan kunci rahasia.",
+      "Hashing dan enkripsi identik karena keduanya selalu dapat dipulihkan.",
+      "Kata sandi sebaiknya disimpan sebagai teks biasa agar mudah diperiksa."
+    ],
+    "answer": 0,
+    "explanation": "Hashing kata sandi yang kuat bersifat satu arah; penggunaan salt dan algoritma khusus kata sandi meningkatkan keamanan."
+  },
+  {
+    "section": "PCK",
+    "q": "Studi kasus: model klasifikasi hasil belajar menunjukkan tingkat kesalahan lebih tinggi pada kelompok peserta didik tertentu. Langkah analisis yang paling tepat adalah ....",
+    "options": [
+      "Menyimpulkan bahwa kelompok tersebut memang memiliki kemampuan lebih rendah.",
+      "Memeriksa keterwakilan dan kualitas data, proses pelabelan, serta kinerja model per kelompok; kemudian mengevaluasi mitigasi bias.",
+      "Menghapus seluruh data kelompok tersebut tanpa analisis.",
+      "Menerima model karena keluaran komputer pasti objektif."
+    ],
+    "answer": 1,
+    "explanation": "Evaluasi bias membutuhkan pemeriksaan data dan kinerja antarkelompok, bukan asumsi bahwa keluaran model pasti netral.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Guru memiliki contoh data yang sudah diberi label kategori “spam” dan “bukan spam” untuk melatih model klasifikasi. Pendekatan pembelajaran mesin yang sesuai adalah ....",
+    "options": [
+      "Clustering tanpa label.",
+      "Reduksi dimensi saja.",
+      "Supervised learning karena contoh latih memiliki label target.",
+      "Randomisasi data tanpa proses pelatihan."
+    ],
+    "answer": 2,
+    "explanation": "Supervised learning menggunakan contoh berlabel untuk mempelajari pemetaan masukan ke target."
+  },
+  {
+    "section": "PCK",
+    "q": "Sebuah algoritma memproses setiap elemen dalam daftar berukuran n tepat satu kali, dengan pekerjaan konstan pada tiap elemen. Kompleksitas waktunya secara umum adalah ....",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n²)",
+      "O(n)"
+    ],
+    "answer": 3,
+    "explanation": "Satu operasi konstan untuk setiap dari n elemen menghasilkan pertumbuhan linear, yaitu O(n)."
+  },
+  {
+    "section": "PCK",
+    "q": "Studi kasus: sekolah ingin membuat sistem peminjaman perangkat laboratorium. Sistem perlu mencatat perangkat, peminjam, tanggal pinjam, dan tanggal kembali. Desain awal yang paling baik adalah ....",
+    "options": [
+      "Memisahkan entitas perangkat, peminjam, dan transaksi peminjaman; memberi ID unik dan menghubungkan transaksi dengan ID terkait.",
+      "Menyimpan seluruh transaksi dalam satu kolom teks tanpa struktur.",
+      "Menjadikan nama peminjam sebagai satu-satunya kunci walaupun nama bisa sama.",
+      "Menyimpan kata sandi akun bersama dalam tabel transaksi."
+    ],
+    "answer": 0,
+    "explanation": "Pemisahan entitas, ID unik, dan relasi yang jelas membantu mengurangi redundansi serta menjaga konsistensi data.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Studi kasus: program seharusnya menjumlahkan angka 1 sampai 5, tetapi hanya menjumlahkan 1 sampai 4. Potongan kode yang digunakan adalah:<pre><code>total = 0\nfor i in range(1, 5):\n    total += i\nprint(total)</code></pre>Perbaikan paling tepat adalah ....",
+    "options": [
+      "Mengganti <code>total = 0</code> menjadi <code>total = 1</code> saja.",
+      "Mengganti <code>range(1, 5)</code> menjadi <code>range(1, 6)</code>.",
+      "Menghapus baris <code>total += i</code>.",
+      "Mengganti <code>print(total)</code> menjadi <code>print(i)</code>."
+    ],
+    "answer": 1,
+    "explanation": "Batas akhir pada <code>range</code> tidak disertakan, sehingga untuk memasukkan 5 perlu digunakan <code>range(1, 6)</code>.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Studi kasus: peserta didik mengumpulkan data suhu ruang laboratorium setiap jam. Mereka ingin membandingkan perubahan suhu selama satu hari dan mendeteksi lonjakan. Langkah analisis yang paling tepat adalah ....",
+    "options": [
+      "Menghapus semua data yang berbeda dari rata-rata tanpa pemeriksaan.",
+      "Mengubah semua nilai menjadi kategori tanpa menyimpan data asli.",
+      "Memeriksa satuan dan kelengkapan data, memvisualisasikan suhu menurut waktu, lalu menyelidiki titik yang tidak biasa berdasarkan konteks pengukuran.",
+      "Memilih diagram lingkaran karena setiap jam merupakan bagian dari satu hari."
+    ],
+    "answer": 2,
+    "explanation": "Analisis data yang baik memeriksa kualitas data, mempertahankan urutan waktu, dan menafsirkan pencilan berdasarkan konteks.",
+    "caseStudy": true
+  },
+  {
+    "section": "PCK",
+    "q": "Guru ingin menilai proyek aplikasi sederhana berdasarkan kemampuan berpikir komputasional, bukan hanya tampilan antarmuka. Rubrik yang paling tepat menilai ....",
+    "options": [
+      "Hanya keindahan antarmuka dan warna.",
+      "Jumlah baris kode yang ditulis tanpa melihat fungsi.",
+      "Kecepatan mengetik dan jumlah fitur sebanyak mungkin.",
+      "Pemahaman masalah, dekomposisi, rancangan algoritma, ketepatan kode, pengujian/debugging, penjelasan solusi, dan kontribusi individu."
+    ],
+    "answer": 3,
+    "explanation": "Rubrik multidimensi menilai proses berpikir, implementasi, pengujian, penjelasan, dan kontribusi peserta didik.",
+    "caseStudy": true
+  }
+];
 const letters = ["A","B","C","D"];
 let answers = Array(questions.length).fill(null);
 let flagged = new Set();
@@ -312,6 +1123,7 @@ function renderQuestion(){
     <div class="question-meta">
       <span class="q-number">SOAL ${current+1}</span>
       <span class="section-badge">${q.section === "SJT" ? "SJT · Situasional" : "PCK · Informatika"}</span>
+      ${q.caseStudy ? '<span class="section-badge case-badge">Studi Kasus</span>' : ''}
       <span class="q-position">${current+1} dari ${questions.length}</span>
     </div>
     <div class="question-text">${q.q}</div>
@@ -431,7 +1243,7 @@ function renderReview(){
     }).join("");
     const chosenText=chosen===null ? "Belum dijawab" : `${letters[chosen]}. ${stripTags(q.options[chosen])}`;
     return `<article class="review-card">
-      <div class="question-meta"><span class="q-number">SOAL ${i+1}</span><span class="section-badge">${q.section}</span><span class="q-position">${chosen===q.answer?"Benar":chosen===null?"Kosong":"Perlu ditinjau"}</span></div>
+      <div class="question-meta"><span class="q-number">SOAL ${i+1}</span><span class="section-badge">${q.section}</span>${q.caseStudy ? '<span class="section-badge case-badge">Studi Kasus</span>' : ''}<span class="q-position">${chosen===q.answer?"Benar":chosen===null?"Kosong":"Perlu ditinjau"}</span></div>
       <h3>${q.q}</h3>
       ${options}
       <div class="explanation"><strong>Pembahasan:</strong> ${q.explanation}<br><span style="display:block;margin-top:6px"><strong>Jawaban Anda:</strong> ${chosenText}</span></div>
